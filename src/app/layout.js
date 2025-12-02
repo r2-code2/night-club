@@ -1,5 +1,6 @@
 import { Ubuntu } from "next/font/google";
 import "./globals.css";
+import Header from "./components/header/Header";
 
 const ubuntu = Ubuntu({
   variable: "--font-ubuntu",
@@ -15,7 +16,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`grid grid-cols-(--full-cols)  ${ubuntu.variable}  antialiased `}>{children}</body>
+      <body className={`grid grid-cols-(--full-cols)  ${ubuntu.variable}  antialiased `}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }

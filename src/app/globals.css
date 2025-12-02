@@ -32,3 +32,18 @@ body {
   color: var(--foreground);
   font-family: Ubuntu, sans-serif;
 }
+
+.gradient-underline {
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.gradient-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background-image: linear-gradient(to right, transparent, var(--color-accent), transparent);
+}

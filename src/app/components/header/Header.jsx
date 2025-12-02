@@ -6,20 +6,21 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="/*grid grid-cols-(--project-grid-cols) col-full/*">
-      <nav className="col-content">
-        <ul className="justify-between flex items-center ">
-          <li>
-            <Link href="/">
-              <Image
-                src="/assets/Logo.png"
-                width={200}
-                height={200}
-                alt="logo"
-              />
-            </Link>
-          </li>
-          <div className="flex *:mx-4 font-medium uppercase *:tracking-[2%] *:text-nowrap">
+    <header className=" w-screen grid grid-cols-(--project-grid-cols) project-grid">
+      <div className="h-screen  md:h-20 md:flex items-center md:justify-between ">
+        <div>
+          <Link href="/">
+            <Image
+              className=""
+              src="/assets/Logo.png"
+              width={200}
+              height={200}
+              alt="logo"
+            />
+          </Link>
+        </div>
+        <nav>
+          <ul className="flex flex-col md:flex-row *:mx-4 font-medium uppercase *:tracking-[2%] *:text-nowrap md:justify-between justify-center items-center  text-center  md:text-start *:py-3 ">
             <li>
               <ActiveLink href="/">home</ActiveLink>
             </li>
@@ -35,9 +36,9 @@ export default function Header() {
             <li>
               <ActiveLink href="/login">login</ActiveLink>
             </li>
-          </div>
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 }

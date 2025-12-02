@@ -47,3 +47,12 @@ body {
   width: 100%;
   background-image: linear-gradient(to right, transparent, var(--color-accent), transparent);
 }
+
+/* midlertidig fix */
+.project-grid {
+  grid-template-columns: var(--project-grid-cols);
+
+  > * {
+    grid-column: content;
+  }
+}

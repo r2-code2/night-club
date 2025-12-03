@@ -31,7 +31,7 @@ export default function Header() {
     </>
   );
   return (
-    <header className={` w-screen grid grid-cols-(--project-grid-cols) project-grid sticky top-0`}>
+    <header className={` bg-background w-screen grid grid-cols-(--project-grid-cols) project-grid sticky top-0`}>
       <nav className="grid grid-cols-subgrid">
         <div className=" h-25 flex items-center justify-between w-full">
           <Link href="/">

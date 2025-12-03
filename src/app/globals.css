@@ -17,7 +17,7 @@
   --full-col: full;
   /* font sizes */
 
-  --step--2: clamp(0.5625rem, 0.5rem + 0.2841vw, 0.75rem);
+  --step--2: clamp(0.8125rem, 0.5rem + 0.2841vw, 2rem);
   --step--1: clamp(0.75rem, 0.6591rem + 0.4545vw, 1rem);
   --step-0: clamp(1rem, 0.8864rem + 0.5682vw, 1.3125rem);
   --step-1: clamp(1.125rem, 0.9773rem + 0.6818vw, 1.5625rem);

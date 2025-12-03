@@ -17,14 +17,14 @@
   --full-col: full;
   /* font sizes */
 
-  --step--2: clamp(0.7813rem, 0.6754rem + 0.4705vw, 1.04rem);
-  --step--1: clamp(0.9375rem, 0.7892rem + 0.6591vw, 1.3rem);
-  --step-0: clamp(1.125rem, 0.9205rem + 0.9091vw, 1.625rem);
-  --step-1: clamp(1.35rem, 1.0713rem + 1.2386vw, 2.0313rem);
-  --step-2: clamp(1.62rem, 1.244rem + 1.671vw, 2.5391rem);
-  --step-3: clamp(1.944rem, 1.4409rem + 2.2361vw, 3.1738rem);
-  --step-4: clamp(2.3328rem, 1.6641rem + 2.9718vw, 3.9673rem);
-  --step-5: clamp(2.7994rem, 1.9158rem + 3.9268vw, 4.9591rem);
+  --step--2: clamp(0.5625rem, 0.5rem + 0.2841vw, 0.75rem);
+  --step--1: clamp(0.75rem, 0.6591rem + 0.4545vw, 1rem);
+  --step-0: clamp(1rem, 0.8864rem + 0.5682vw, 1.3125rem);
+  --step-1: clamp(1.125rem, 0.9773rem + 0.6818vw, 1.5625rem);
+  --step-2: clamp(1.125rem, 0.9205rem + 0.9091vw, 1.125rem);
+  --step-3: clamp(1.5rem, 1.2277rem + 1.1364vw, 1.5rem);
+  --step-4: clamp(2.375rem, 1.9545rem + 1.8182vw, 2.375rem);
+  --step-5: clamp(2.75rem, 2.2727rem + 2.2727vw, 2.75rem);
 }
 
 body {

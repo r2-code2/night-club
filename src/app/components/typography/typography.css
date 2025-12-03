@@ -1,0 +1,7 @@
+.white {
+  color: var(--foreground);
+}
+
+.pink {
+  color: var(--accent);
+}

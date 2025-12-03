@@ -1,16 +1,15 @@
-import IconBorder from "./icons/IconBorder";
+"use client";
+
+import IconBorder from "../icons/IconBorder";
 import { FaFacebookF } from "react-icons/fa";
 import { FaSnapchatGhost } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
-import footerbg from "../assets/bg/footerbg.jpg";
-import postOne from "../assets/content-img/recent_post1.jpg";
-import postTwo from "../assets/content-img/recent_post2.jpg";
-import { FaTwitter } from "react-icons/fa";
-
+import footerbg from "../../assets/bg/footerbg.jpg";
 import Image from "next/image";
-import Logo from "../assets/icon/Logo_main.svg";
-
-import { Caption, HeadingSecondary } from "./typography";
+import Logo from "../../assets/icon/Logo_main.svg";
+import { Caption, HeadingSecondary } from "../typography";
+import RecentPosts from "./RecentPosts";
+import RecentTweets from "./RecentTweets";
 
 const Footer = () => {
   return (
@@ -20,52 +19,34 @@ const Footer = () => {
         <div className="md:grid md:grid-cols-3 md:gap-5 md:text-start">
           <div className="grid gap-7">
             <Image src={Logo} alt="logo" className="justify-self-center w-50 h-auto md:justify-self-start" width={96} height={96} />
-            <div>
-              <HeadingSecondary text="Location" />
-              <Caption
-                text="Kompagnistræde 278
-1265 Købehavn K"
-              />
+            <div className="grid">
+              <HeadingSecondary text="Location" color="pink" />
+              <Caption text="Kompagnistræde 278" />
+              <Caption text="1265 Købehavn K" />
             </div>
-            <div>
-              <HeadingSecondary text="Opening Hours" />
+            <div className="grid">
+              <HeadingSecondary text="Opening Hours" color="pink" />
               <Caption text="WED - THU 10:30 PMTO 3 AM" />
               <Caption text="SAT - SUN: 11 PM TO 5 AM" />
             </div>
           </div>
 
           <div className="hidden md:grid col-2 text-start gap-4">
-            <HeadingSecondary text="Recent posts" />
+            <HeadingSecondary text="Recent posts" color="pink" />
             <div className="flex gap-10">
-              <Image src={postOne} alt="post one" className="self-stretch object-cover aspect-square" />
-              <div className="grid gap-2">
-                <Caption text="Lorem Ipsum is simply dummy text of the printing and typesetting." />
-                <Caption text="April 17. 2018" />
-              </div>
+              <RecentPosts text="Lorem Ipsum is simply dummy text of the printing and typesetting." date="April 17. 2018" image="img1" />
             </div>
             <div className="flex gap-10">
-              <Image src={postTwo} alt="post one" className="self-stretch object-cover aspect-square" />
-              <div className="grid gap-2">
-                <Caption text="Lorem Ipsum is simply dummy text of the printing and typesetting." />
-                <Caption text="April 17. 2018" />
-              </div>
+              <RecentPosts text="Lorem Ipsum is simply dummy text of the printing and typesetting." date="April 17. 2018" image="img2" />
             </div>
           </div>
           <div className="hidden md:grid col-3 text-start gap-4">
-            <HeadingSecondary text="Recent tweets" />
+            <HeadingSecondary text="Recent tweets" color="pink" />
             <div className="flex gap-10">
-              <FaTwitter size={25} className="ml-5" />
-              <div className="grid gap-2">
-                <Caption text="Lorem Ipsum is simply dummy text of the printing and typesetting." />
-                <Caption text="April 17. 2018" />
-              </div>
+              <RecentTweets text="Lorem Ipsum is simply dummy text of the printing and typesetting." date="April 17. 2018" />
             </div>
             <div className="flex gap-10">
-              <FaTwitter size={25} className="ml-5" />
-              <div className="grid gap-2">
-                <Caption text="Lorem Ipsum is simply dummy text of the printing and typesetting." />
-                <Caption text="April 17. 2018" />
-              </div>
+              <RecentTweets text="Lorem Ipsum is simply dummy text of the printing and typesetting." date="April 17. 2018" />
             </div>
           </div>
         </div>

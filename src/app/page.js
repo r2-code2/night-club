@@ -1,4 +1,4 @@
-import Footer from "./components/Footer";
+import Footer from "./components/footer/Footer";
 import { HeadingXL, HeadingMain, HeadingSecondary, Subheading, Caption } from "./components/typography";
 export default function Home() {
   return (

@@ -43,22 +43,25 @@ export default function Header() {
           </Link>
 
           <button
-            className="flex-0 cursor-pointer md:hidden"
-            onClick={() => setOpen((s) => !s)}>
+            className="cursor-pointer md:hidden"
+            onClick={() => setOpen((s) => !s)}
+            aria-label="Open menu">
             <IoMenu size={40} />
           </button>
+
           <div className="hidden md:block">{links}</div>
         </div>
         {open && (
-          <div className="grid grid-cols-(--project-grid-cols) project-grid md:hidden fixed top-0 left-0 w-screen  h-screen bg-black ">
-            <div
-              className="flex w-full h-25 justify-end items-center p-2 cursor-pointer "
-              onClick={() => setOpen((s) => !s)}>
-              <IoClose size={40} />
+          <div className="grid grid-cols-(--project-grid-cols) project-grid md:hidden fixed inset-0 z-50 w-screen h-screen bg-black/90">
+            <div className="flex w-full h-25 justify-end items-center -mb-30">
+              <button
+                className="cursor-pointer"
+                onClick={() => setOpen((s) => !s)}
+                aria-label="Close menu">
+                <IoClose size={40} />
+              </button>
             </div>
-            <div>
-            {links}
-            </div>
+            <div className="flex justify-center items-start my-50 h-screen">{links}</div>
           </div>
         )}
       </nav>

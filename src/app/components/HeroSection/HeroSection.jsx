@@ -5,7 +5,7 @@ import HeroSectionBg from "../../assets/bg/footerbg.jpg";
 const text = "test";
 const HeroSection = () => {
   return (
-    <div className=" col-(--full-col) h-68 w-screen bg-black relative overflow-hidden">
+    <div className=" col-(--full-col) h-20.25 md:h-68 w-screen bg-black relative overflow-hidden">
       <Image
         className="opacity-15 absolute inset-0 w-full h-full object-cover"
         alt="Hero background image"

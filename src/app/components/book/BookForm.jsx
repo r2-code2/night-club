@@ -3,7 +3,7 @@ import { Caption, HeadingXL } from "../typography";
 
 const BookForm = () => {
   return (
-    <div className="mt-20">
+    <div className="mt-20 col-(--content-col)">
       <HeadingXL text="book a table" />
       <form className="grid md:grid-cols-2 col-(-content-col)  py-4 gap-4">
         <div className="border md:p-4 p-2">

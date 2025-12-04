@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-/* @link https://utopia.fyi/type/calculator?c=360,18,1.2,1240,26,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
-
 :root {
   --background: #070707;
   --foreground: #ffff;
@@ -12,12 +10,12 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
-  --project-grid-cols: [full-start] minmax(1rem, 1fr) [content-start] minmax(0, 1200px) [content-end] minmax(1rem, 1fr) [full-end];
+  --project-grid-cols: [full-start] minmax(1.7rem, 1fr) [content-start] minmax(0, 1200px) [content-end] minmax(1.7rem, 1fr) [full-end];
   --content-col: content;
   --full-col: full;
   /* font sizes */
 
-  --step--2: clamp(0.5625rem, 0.5rem + 0.2841vw, 0.75rem);
+  --step--2: clamp(0.8125rem, 0.5rem + 0.2841vw, 2rem);
   --step--1: clamp(0.75rem, 0.6591rem + 0.4545vw, 1rem);
   --step-0: clamp(1rem, 0.8864rem + 0.5682vw, 1.3125rem);
   --step-1: clamp(1.125rem, 0.9773rem + 0.6818vw, 1.5625rem);
@@ -33,13 +31,40 @@ body {
   font-family: Ubuntu, sans-serif;
 }
 
-
-
 /* midlertidig fix */
 .project-grid {
   grid-template-columns: var(--project-grid-cols);
 
   > * {
     grid-column: content;
+  }
+}
+
+.frame {
+  --triangle-size: clamp(2rem, 4vw, 3rem);
+  width: 100%;
+  height: auto;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--triangle-size);
+    height: var(--triangle-size);
+    background-color: var(--color-accent);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: var(--triangle-size);
+    height: var(--triangle-size);
+    background-color: var(--color-accent);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
   }
 }

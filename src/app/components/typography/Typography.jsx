@@ -29,8 +29,18 @@ export const Subheading = ({ text, color }) => (
     {text}
   </h3>
 );
-export const Caption = ({ text, color, wordLimit }) => (
-  <span style={{ fontSize: "var(--step--1)" }} className={`${color}`}>
+
+export const HeroSubheading = ({ text, color }) => (
+  <h3
+    style={{ fontSize: "var(--step--2)" }}
+    className={`uppercase tracking-[0.8125rem] ${color}`}>
+    {text}
+  </h3>
+);
+export const Caption = ({ text, color,  wordLimit }) => (
+  <span
+    style={{ fontSize: "var(--step--1)" }}
+    className={`${color}`}>
     {truncateWords(text, wordLimit)}
   </span>
 );

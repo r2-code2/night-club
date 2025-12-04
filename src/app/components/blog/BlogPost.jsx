@@ -33,7 +33,7 @@ const FetchBlogPost = async () => {
   // API may return either an array (e.g. [post, ...]) or an object { posts: [...] }
   const posts = Array.isArray(data) ? data : data?.posts ?? [];
 
-  const directions = ["flex-row-reverse", "flex"];
+  const directions = ["flex", "flex-row-reverse"];
 
   if (!posts || posts.length === 0) {
     return <div>No posts available</div>;
@@ -45,16 +45,16 @@ const FetchBlogPost = async () => {
     const imageSrc = imageMap[filename] || BlogFull1; // fallback to BlogFull1 if not found
 
     return (
-      <Link href="" key={post.id ?? index} className={`flex justify-between ${direction}`}>
+      <Link href="" key={post.id ?? index} className={`grid md:flex ${direction}`}>
+        <Image src={imageSrc} alt={post.title} width={300} height={200} className="self-stretch w-full object-cover basis-0 grow" />
         <div className="grid basis-0 grow p-10">
           <HeadingSecondary text={post.title} />
           <Caption text={`By: ${post.author} / 3 Comments / 16. November 2016`} color="pink" />
           <Caption text={post.content} wordLimit={70} />
-          <button className="border-t border-b col-span-full w-1/2 md:w-35 py-3 justify-self-end">
+          <button className="border-t border-b col-span-full mt-5 w-1/2 md:w-35 py-3 justify-self-center md:justify-self-end">
             <Caption text="READ MORE" />
           </button>
         </div>
-        <Image src={imageSrc} alt={post.title} width={300} height={200} className="self-stretch object-cover basis-0 grow" />
       </Link>
     );
   });

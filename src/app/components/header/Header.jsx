@@ -4,6 +4,7 @@ import Image from "next/image";
 import Logo from "../../assets/icon/Logo_main.svg";
 import ActiveLink from "./ActiveLink";
 import Link from "next/link";
+
 import { useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
 
@@ -31,41 +32,43 @@ export default function Header() {
     </>
   );
   return (
-    <header className={` bg-background w-screen grid grid-cols-(--project-grid-cols) project-grid sticky top-0`}>
-      <nav className="grid grid-cols-subgrid">
-        <div className=" h-25 flex items-center justify-between w-full">
-          <Link href="/">
-            <Image
-              src={Logo}
-              width={200}
-              height={200}
-              alt="logo"
-            />
-          </Link>
+    <div className="w-screen">
+      <header className={`border-accent border frame bg-background w-screen grid grid-cols-(--project-grid-cols) project-grid sticky top-0`}>
+        <nav className="grid grid-cols-subgrid ">
+          <div className=" h-25 flex items-center justify-between w-full">
+            <Link href="/">
+              <Image
+                src={Logo}
+                width={200}
+                height={200}
+                alt="logo"
+              />
+            </Link>
 
-          <button
-            className="cursor-pointer md:hidden"
-            onClick={() => setOpen((s) => !s)}
-            aria-label="Open menu">
-            <IoMenu size={40} />
-          </button>
+            <button
+              className="cursor-pointer md:hidden -mr-2"
+              onClick={() => setOpen((s) => !s)}
+              aria-label="Open menu">
+              <IoMenu size={40} />
+            </button>
 
-          <div className="hidden md:block">{links}</div>
-        </div>
-        {open && (
-          <div className="grid grid-cols-(--project-grid-cols) project-grid md:hidden fixed inset-0 z-50 w-screen h-screen bg-black/90">
-            <div className="flex w-full h-25 justify-end items-center -mb-30">
-              <button
-                className="cursor-pointer"
-                onClick={() => setOpen((s) => !s)}
-                aria-label="Close menu">
-                <IoClose size={40} />
-              </button>
-            </div>
-            <div className="flex justify-center items-start my-50 h-screen">{links}</div>
+            <div className="hidden md:block">{links}</div>
           </div>
-        )}
-      </nav>
-    </header>
+          {open && (
+            <div className="grid grid-cols-(--project-grid-cols) project-grid md:hidden fixed inset-0 z-50 w-screen h-screen bg-black/90">
+              <div className="flex w-full h-25 justify-end items-center -mb-30">
+                <button
+                  className="cursor-pointer"
+                  onClick={() => setOpen((s) => !s)}
+                  aria-label="Close menu">
+                  <IoClose size={40} />
+                </button>
+              </div>
+              <div className="flex justify-center items-start my-50 h-screen">{links}</div>
+            </div>
+          )}
+        </nav>
+      </header>
+    </div>
   );
 }

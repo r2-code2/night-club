@@ -1,5 +1,5 @@
 import PartyBg from "../bgOverlays/PartyBg";
-import Slider from "../home/events/Slider";
+import Slider from "../slider/Slider";
 import TestimonialCard from "./TetimonialCard";
 
 const testimonials = () => {

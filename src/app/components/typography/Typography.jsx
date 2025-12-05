@@ -56,7 +56,7 @@ export const HeroSubheading = ({ text, color }) => (
 export const Caption = ({ text, color, wordLimit }) => (
   <span
     style={{ fontSize: "var(--step--1)" }}
-    className={`${color}`}>
+    className={`${color} leading-[180%]`}>
     {truncateWords(text, wordLimit)}
   </span>
 );

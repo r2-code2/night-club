@@ -1,6 +1,4 @@
 import SoMe from "../socials/Socials";
-import PartyBg from "../bgOverlays/PartyBg";
-import Slider from "../home/events/Slider";
 import Image from "next/image";
 import { HeadingSecondary, Caption } from "../typography";
 
@@ -15,7 +13,7 @@ const testimonials = () => {
         alt="Portrait image"
         className=""
       />
-      <div className="*:py-2 mb-2">
+      <div className="*:py-2 mb-2 max-w-[102ch]">
         <HeadingSecondary text="Alex" />
         <Caption
           text="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by 

@@ -4,7 +4,7 @@ import WelcomeCard from "./WelcomeCard";
 export default function Welcome() {
   return (
     <section className="col-(--full-col) grid grid-cols-subgrid py-20">
-      <div className="col-(--content-col) flex flex-col items-center gap-11">
+      <div className="col-(--full-col) flex flex-col items-center gap-11">
         {/* Titel */}
         <HeadingMain
           color="white"

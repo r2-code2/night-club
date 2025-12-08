@@ -8,7 +8,7 @@ export default function WelcomeCard({ imgUrl }) {
         width={1000}
         height={1000}
         alt={"Welcome image1"}
-        className="w-full h-[400px] md:h-[350px] object-cover"
+        className="w-full object-cover"
       />
     </div>
   );

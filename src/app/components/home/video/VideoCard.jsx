@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function VideoCard({imgUrl}) {
   return (
-    <div className="frame border border-accent max-w-5xl w-full mx-auto">
+    <div className="frame border border-accent w-full mx-auto">
       <Image
         src={`/assets/content-img/${imgUrl}`}
         width={1600}

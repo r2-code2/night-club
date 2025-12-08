@@ -16,7 +16,7 @@ export default function LatestVideo() {
           altText="videobillede"
         />
 
-        {/* Pile (statisk for nu) */}
+        {/* Pile */}
         <div className="flex items-center justify-center gap-4 mt-4">
           <button className="w-10 h-10 border border-white flex items-center justify-center">
             <span className="text-white text-lg">&lt;</span>

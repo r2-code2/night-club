@@ -7,7 +7,7 @@ export default function events() {
   return (
     <section className="h-fit col-(--full-col) grid grid-cols-subgrid">
       <GradientBg>
-        <div className="col-(--content-col) row-start-1 row-span-2 z-10">
+        <div className="col-(--content-col)">
           <div className="h-50 flex  items-center ">
             <HeadingMain
               color="white"

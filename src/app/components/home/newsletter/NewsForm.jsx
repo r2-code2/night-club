@@ -13,10 +13,29 @@ const NewsForm = () => {
   const form = useForm({ resolver: zodResolver(formSchema) });
   const { register, handleSubmit, formState } = form;
   const { errors, isSubmitting } = formState;
+  const url = "http://localhost:4000/newsletters";
+
   const onSubmit = async (data) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log("Form has been submittet", data);
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        console.error("Failed:", await response.text());
+        return;
+      }
+
+      console.log("Success! Form has been submitted", data);
+    } catch (err) {
+      console.error("Error submitting form:", err);
+    }
   };
+
   return (
     <>
       <Caption color="text-red-500" text={errors.email?.message} />

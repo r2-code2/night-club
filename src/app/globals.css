@@ -4,18 +4,19 @@
   --background: #070707;
   --foreground: #ffff;
   --accent: #ff2a70;
+  --triangle-size: clamp(2rem, 4vw, 3rem);
+  --triangle-size-lg: clamp(3rem, 5vw, 4rem);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
-  --project-grid-cols: [full-start] minmax(1.7rem, 1fr) [content-start] minmax(0, 1200px) [content-end] minmax(1.7rem, 1fr) [full-end];
+  --project-grid-cols: [full-start] minmax(1.7rem, 1fr) [content-start]
+    minmax(0, 1200px) [content-end] minmax(1.7rem, 1fr) [full-end];
   --content-col: content;
   --full-col: full;
   /* font sizes */
-
-
 }
 
 body {

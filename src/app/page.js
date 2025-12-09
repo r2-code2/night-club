@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <main className="grid col-(--full-col) grid-cols-subgrid">
-        <HomeHero />      
+        <HomeHero />
         <Header />
         <Welcome />
         <Events />

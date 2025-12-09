@@ -5,7 +5,7 @@ import DetailsOverlay from "./DetailsOverlay";
 
 export default function EventCard({ event }) {
   const dateFormat = new Intl.DateTimeFormat("en-GB", {
-    month: "long",
+    month: "short",
     day: "numeric",
   });
 

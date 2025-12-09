@@ -38,10 +38,10 @@ export const Subheading = ({ text, color }) => (
   </h3>
 );
 
-export const BannerText = ({ text, color }) => (
+export const BannerText = ({ text, style }) => (
   <h3
     style={{ fontSize: "var(--step-0)" }}
-    className={`${color}`}>
+    className={`${style}`}>
     {text}
   </h3>
 );

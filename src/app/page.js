@@ -8,11 +8,12 @@ import RecentBlog from "./components/home/recentblog/RecentBlog";
 import Testimonials from "./components/testimonials/Testimonials";
 import NewsLetter from "./components/home/newsletter/NewsLetter";
 
+
 export default function Home() {
   return (
     <>
       <main className="grid col-(--full-col) grid-cols-subgrid">
-        <HomeHero />      
+        <HomeHero />
         <Header />
         <Welcome />
         <Events />

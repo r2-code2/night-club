@@ -21,7 +21,7 @@ const formBookSchema = z.object({
   comment: z.string(),
 });
 
-const BookForm = () => {
+const BookForm = ({ selectedTable, setSelectedTable }) => {
   const form = useForm({ resolver: zodResolver(formBookSchema) });
   const { register, handleSubmit, formState } = form;
   const { errors, isSubmitting } = formState;
@@ -61,7 +61,7 @@ const BookForm = () => {
         </div>
         <div className="w-full h-full">
           <p className="text-red-500 text-xs h-6 align-baseline pt-2">{errors.table?.message}</p>
-          <input type="text" className={`w-full h-full border md:p-4 p-2 focus:outline-accent placeholder:text-foreground ${errors.table ? "border-red-500" : ""}`} id="table" placeholder="Table Number" {...register("table", { valueAsNumber: true })} />
+          <input type="text" className={`w-full h-full border md:p-4 p-2 focus:outline-accent placeholder:text-foreground ${errors.table ? "border-red-500" : ""}`} id="table" placeholder="Table Number" value={selectedTable ?? ""} {...register("table")} />
         </div>
         <div className="w-full h-full">
           <p className="text-red-500 text-xs h-6 align-baseline pt-2">{errors.guests?.message}</p>

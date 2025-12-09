@@ -1,5 +1,6 @@
 "use client";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import MainButton from "../buttons/MainButton";
@@ -23,9 +24,14 @@ const formBookSchema = z.object({
 
 const BookForm = ({ selectedTable, setSelectedTable }) => {
   const form = useForm({ resolver: zodResolver(formBookSchema) });
-  const { register, handleSubmit, formState } = form;
+  const { register, handleSubmit, formState, setValue } = form;
   const { errors, isSubmitting } = formState;
   const url = "http://localhost:4000/reservations";
+  useEffect(() => {
+    if (selectedTable != null) {
+      setValue("table", selectedTable, { shouldValidate: true });
+    }
+  }, [selectedTable, setValue]);
 
   const onSubmit = async (data) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -61,7 +67,7 @@ const BookForm = ({ selectedTable, setSelectedTable }) => {
         </div>
         <div className="w-full h-full">
           <p className="text-red-500 text-xs h-6 align-baseline pt-2">{errors.table?.message}</p>
-          <input type="text" className={`w-full h-full border md:p-4 p-2 focus:outline-accent placeholder:text-foreground ${errors.table ? "border-red-500" : ""}`} id="table" placeholder="Table Number" value={selectedTable ?? ""} {...register("table")} />
+          <input type="text" className={`w-full h-full border md:p-4 p-2 focus:outline-accent placeholder:text-foreground ${errors.table ? "border-red-500" : ""}`} id="table" placeholder="Table Number" {...register("table")} />
         </div>
         <div className="w-full h-full">
           <p className="text-red-500 text-xs h-6 align-baseline pt-2">{errors.guests?.message}</p>

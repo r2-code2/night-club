@@ -3,10 +3,10 @@ import Image from "next/image";
 import { HeadingSecondary, Caption } from "../typography";
 
 const TestimonialCard = ({image, name, text}) => {
- 
+ console.log("IMAGE PROP:", image, "NAME:", name);
   return (
     <div className="text-center flex flex-col  justify-center items-center gap-5 mt-12 mb-8">
-      <Image
+      <img
         src={image}
         width={200}
         height={200}

@@ -15,9 +15,9 @@ const details = ({ event }) => {
         variants={overlayVariants}
         initial="hidden"
         whileHover="visible"
-        className="h-full w-full  absolute bottom-0 left-0  bg-black/40 flex flex-col justify-between items-center ">
+        className="flex h-full w-full  absolute bottom-0 left-0  bg-black/40  flex-col justify-between items-center ">
         <Link href="/book">
-          <button className="bg-accent w-30 h-10 mt-25 cursor-pointer z-12">
+          <button className="bg-accent w-30 h-10 mt-[50%] mb-8 lg:mt-25 cursor-pointer z-12">
             Book Now
           </button>
         </Link>
@@ -29,7 +29,7 @@ const details = ({ event }) => {
           />
           <Caption
             text={event.description}
-            wordLimit={30}
+            wordLimit={25}
           />
         </div>
       </motion.div>

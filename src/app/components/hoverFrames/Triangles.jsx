@@ -62,7 +62,7 @@ const Triangles = ({ children }) => {
 
   return (
     <motion.div
-      className="relative inline-block w-full -mb-2 overflow-hidden"
+      className="relative inline-block h-full w-full -mb-2 overflow-hidden"
       initial="hidden"
       whileHover="visible">
       <motion.div

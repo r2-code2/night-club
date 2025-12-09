@@ -19,7 +19,7 @@ export default function EventCard({ event }) {
   const time = timeFormat.format(new Date(event.date));
 
   return (
-    <div className="relative w-full">
+    <div className="relative   mb-10 w-full">
       <HoverFrame>
         <Image
           src={`/assets/content-img/event-thumb${event.id}.jpg`}
@@ -34,10 +34,13 @@ export default function EventCard({ event }) {
         />
       </HoverFrame>
 
-      <div className="w-full h-10 bg-accent flex items-center justify-start gap-7 px-6">
-        <BannerText text={date} />
+      <div className="w-full h-fit py-2 md:py-3 flex-2 bg-accent flex items-center justify-start gap-7 px-6">
         <BannerText
-          style="uppercase"
+          text={date}
+          style="text-nowrap"
+        />
+        <BannerText
+          style="uppercase text-nowrap"
           text={time}
         />
         <BannerText text={`${event.location}, New York`} />

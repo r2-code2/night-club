@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import PartyBg from "../bgOverlays/PartyBg";
-import Slider from "../slider/Slider";
+import PartyBg from "../../bgOverlays/PartyBg";
+import Slider from "../../slider/Slider";
 import TestimonialCard from "./TestimonialCard";
 
 export default function Testimonials() {

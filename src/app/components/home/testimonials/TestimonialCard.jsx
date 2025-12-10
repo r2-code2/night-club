@@ -1,6 +1,6 @@
-import SoMe from "../socials/Socials";
+import SoMe from "../../socials/Socials";
 
-import { HeadingSecondary, Caption } from "../typography";
+import { HeadingSecondary, Caption } from "../../typography/Typography";
 
 const TestimonialCard = ({image, name, text}) => {
  console.log("IMAGE PROP:", image, "NAME:", name);

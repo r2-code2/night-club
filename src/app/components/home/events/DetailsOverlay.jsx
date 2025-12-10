@@ -15,16 +15,16 @@ const details = ({ event }) => {
         variants={overlayVariants}
         initial="hidden"
         whileHover="visible"
-        className="flex h-full w-full  absolute bottom-0 left-0  bg-black/50  flex-col justify-between items-center ">
+        className="flex h-full w-full  absolute bottom-0 left-0  bg-black/50  flex-col justify-center lg:justify-between items-center ">
         <Link
           href="/book "
-          className="mt-[50%] mb-8 lg:mt-25">
+          className="lg:mt-25">
           <button className="bg-accent  w-30 h-10  cursor-pointer z-12  ">
             Book Now
           </button>
         </Link>
 
-        <div className="bg-black w-full py-5 px-6 gap-2 ">
+        <div className="bg-black w-full py-5 px-6 gap-2 hidden lg:block">
           <HeadingSecondary
             color="pb-2"
             text={event.title}

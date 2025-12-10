@@ -15,7 +15,8 @@ export default function Events() {
     async function loadEvents() {
       const res = await fetch("http://localhost:4000/events");
       const data = await res.json();
-      setEvents(data || []);
+      const validEvents = (data || []).filter((event) => event.date);
+      setEvents(validEvents);
     }
 
     loadEvents();
@@ -32,7 +33,10 @@ export default function Events() {
       <GradientBg>
         <div className="col-(--content-col)">
           <div className="h-50 flex items-center">
-            <HeadingMain color="white" text="events of the month" />
+            <HeadingMain
+              color="white"
+              text="events of the month"
+            />
           </div>
 
           {/* KARUSEL – kun hvis vi har data */}
@@ -40,20 +44,19 @@ export default function Events() {
             <div className="w-full overflow-hidden mt-6">
               <div
                 className="flex transition-transform duration-500 ease-out"
-                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-              >
+                style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                 {slides.map((slideEvents, slideIndex) => (
                   <div
                     key={slideIndex}
-                    className="min-w-full"
-                  >
+                    className="min-w-full">
                     {/* HER er præcis din gamle struktur */}
                     <div className="w-full md:flex gap-5">
                       {slideEvents.map((event, idx) => (
                         <div
                           key={event.id}
-                          className={idx === 1 ? "hidden md:block w-full" : "w-full"}
-                        >
+                          className={
+                            idx === 1 ? "hidden md:block w-full" : "w-full"
+                          }>
                           <EventCard event={event} />
                         </div>
                       ))}

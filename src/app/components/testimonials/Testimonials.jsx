@@ -7,21 +7,16 @@ import Slider from "../slider/Slider";
 import TestimonialCard from "./TestimonialCard";
 
 export default function Testimonials() {
-
   const [testimonials, setTestimonials] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  // hvilket kort vi viser lige nu (index 0 = første person)
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     async function loadTestimonials() {
-
       try {
         const res = await axios.get("http://localhost:4000/testimonials");
         setTestimonials(res.data || []);
-        
       } catch (err) {
         setError(err);
       } finally {
@@ -29,59 +24,49 @@ export default function Testimonials() {
       }
     }
 
-    loadTestimonials(); 
+    loadTestimonials();
   }, []);
 
- const current = testimonials[currentIndex];
- console.log("CURRENT TESTIMONIAL:", current);
+  // vælg hvad vi vil vise
+  let content = null;
 
- function handlePrev() {
-  setCurrentIndex((prev) =>
-    prev === 0 ? testimonials.length - 1 : prev - 1
-  );
-}
-
-function handleNext() {
-  setCurrentIndex((prev) =>
-    prev === testimonials.length - 1 ? 0 : prev + 1
-  );
-}
-
+  if (isLoading) {
+    content = <p className="text-white mt-12">Loading testimonials...</p>;
+  } else if (error) {
+    content = <p className="text-red-400 mt-12">Loading failed</p>;
+  } else if (testimonials.length > 0) {
+    content = (
+      <div className="w-full overflow-hidden mt-12">
+        <div
+          className="flex transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
+          {testimonials.map((t) => (
+            <div
+              key={t.id}
+              className="min-w-full flex justify-center"
+            >
+              <TestimonialCard
+                image={t.asset?.url}
+                name={t.name}
+                text={t.content}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="col-(--full-col) grid grid-cols-subgrid h-full">
       <PartyBg>
+        {content}
 
-        {isLoading && (
-          <p className="text-white mt-12">Loading testimonials...</p>
-        )}
-
-        {error && (
-          <p className="text-red-400 mt-12">Loading failed</p>
-        )}
-
-        {current && (
-          <TestimonialCard 
-            image={current.asset?.url}
-            name={current.name}
-            text={current.content}
-            
-
-          />
-        )}
-
- <div>
-            <Slider
-           
-    onPrev={handlePrev}
-    onNext={handleNext}
-    currentIndex={currentIndex}
-    total={testimonials.length}
-
- />
-          </div>
-      
-
+        <Slider
+          currentIndex={currentIndex}
+          onChange={setCurrentIndex}
+        />
       </PartyBg>
     </div>
   );

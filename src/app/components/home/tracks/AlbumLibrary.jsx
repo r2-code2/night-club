@@ -9,6 +9,7 @@ const AlbumLibrary = ({ setImage, setSong, setTitle }) => {
         <Image
           src="/assets/content-img/track1.jpg"
           alt="thumbnail image"
+          className="cursor-pointer"
           width={300}
           height={300}
           onClick={() => {
@@ -22,6 +23,7 @@ const AlbumLibrary = ({ setImage, setSong, setTitle }) => {
         <Image
           src="/assets/content-img/track2.jpg"
           alt="thumbnail image"
+          className="cursor-pointer"
           width={300}
           height={300}
           onClick={() => {
@@ -35,6 +37,7 @@ const AlbumLibrary = ({ setImage, setSong, setTitle }) => {
         <Image
           src="/assets/content-img/track_thumb.jpg"
           alt="thumbnail image"
+          className="cursor-pointer"
           width={300}
           height={300}
           onClick={() => {
@@ -48,6 +51,7 @@ const AlbumLibrary = ({ setImage, setSong, setTitle }) => {
         <Image
           src="/assets/content-img/track4.jpg"
           alt="thumbnail image"
+          className="cursor-pointer"
           width={300}
           height={300}
           onClick={() => {
@@ -61,6 +65,7 @@ const AlbumLibrary = ({ setImage, setSong, setTitle }) => {
         <Image
           src="/assets/content-img/track5.jpg"
           alt="thumbnail image"
+          className="cursor-pointer"
           width={300}
           height={300}
           onClick={() => {

@@ -55,7 +55,7 @@ const MediaPlayer = ({ isSong, isImage, isTitle }) => {
         <Slider
           value={[isTimestamp]}
           max={100}
-          className="w-full"
+          className="w-full cursor-pointer"
           onValueChange={(v) => {
             const song = songRef.current;
             if (!song) return;
@@ -70,18 +70,18 @@ const MediaPlayer = ({ isSong, isImage, isTitle }) => {
           <div className="flex justify-center items-center gap-3">
             <TiMediaRewind
               size={30}
-              className="block leading-none"
+              className="block leading-none cursor-pointer hover:text-accent"
               onClick={() => {
                 const song = songRef.current;
                 if (!song) return;
                 song.currentTime = Math.max(song.currentTime - 5, 0);
               }}
             />
-            <div className="border-4 rounded-full p-2 w-15 h-15 grid justify-center items-center" onClick={togglePlay}>
-              {isPlaying ? <FaPause size={30} /> : <FaPlay size={30} />}
+            <div className="border-4 rounded-full p-2 w-15 h-15 grid justify-center items-center cursor-pointer hover:border-accent hover:text-accent" onClick={togglePlay}>
+              {isPlaying ? <FaPause size={30} color={accent} /> : <FaPlay size={30} />}
             </div>
             <TiMediaFastForward
-              className="block leading-none"
+              className="block leading-none cursor-pointer hover:text-accent"
               size={30}
               onClick={() => {
                 const song = songRef.current;
@@ -89,7 +89,7 @@ const MediaPlayer = ({ isSong, isImage, isTitle }) => {
                 song.currentTime = Math.min(song.currentTime + 5, song.duration);
               }}
             />
-            <LuShuffle size={20} />
+            <LuShuffle size={20} className="cursor-pointer hover:text-accent" />
           </div>
           <div className="flex gap-5 justify-center items-center ">
             <HiSpeakerWave size={40} />
@@ -97,7 +97,7 @@ const MediaPlayer = ({ isSong, isImage, isTitle }) => {
               value={[isVolume * 100]}
               max={100}
               step={1}
-              className="w-40"
+              className="w-40 cursor-pointer"
               onValueChange={(v) => {
                 const volume = v[0] / 100;
                 setVolume(volume);

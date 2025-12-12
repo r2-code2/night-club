@@ -28,7 +28,10 @@ const MediaPlayer = ({ isSong, isImage, isTitle }) => {
     if (!sec) return "00:00";
     const minutes = Math.floor(sec / 60);
     const seconds = Math.floor(sec % 60);
-    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+      2,
+      "0"
+    )}`;
   };
   useEffect(() => {
     const song = songRef.current;
@@ -40,7 +43,12 @@ const MediaPlayer = ({ isSong, isImage, isTitle }) => {
   }, [isSong]);
   return (
     <section className="flex gap-5">
-      <Image src={`/assets/content-img/${isImage}`} alt="thumbnail image" width={400} height={400} />
+      <Image
+        src={`/assets/content-img/${isImage}`}
+        alt="thumbnail image"
+        width={400}
+        height={400}
+      />
       <audio
         ref={songRef}
         src={`/assets/media/${isSong}`}
@@ -65,7 +73,11 @@ const MediaPlayer = ({ isSong, isImage, isTitle }) => {
         />
         <div className="flex justify-between items-center">
           <div>
-            <Caption text={`${formatTime(songRef.current?.currentTime || 0)} / ${formatTime(songRef.current?.duration || 0)}`} />
+            <Caption
+              text={`${formatTime(
+                songRef.current?.currentTime || 0
+              )} / ${formatTime(songRef.current?.duration || 0)}`}
+            />
           </div>
           <div className="flex justify-center items-center gap-3">
             <TiMediaRewind
@@ -77,8 +89,17 @@ const MediaPlayer = ({ isSong, isImage, isTitle }) => {
                 song.currentTime = Math.max(song.currentTime - 5, 0);
               }}
             />
-            <div className="border-4 rounded-full p-2 w-15 h-15 grid justify-center items-center cursor-pointer hover:border-accent hover:text-accent" onClick={togglePlay}>
-              {isPlaying ? <FaPause size={30} color="accent" /> : <FaPlay size={30} />}
+            <div
+              className="border-4 *:pl-1 rounded-full p-2 w-15 h-15 grid justify-center items-center cursor-pointer hover:border-accent hover:text-accent"
+              onClick={togglePlay}>
+              {isPlaying ? (
+                <FaPause
+                  size={30}
+                  color="accent"
+                />
+              ) : (
+                <FaPlay size={30} />
+              )}
             </div>
             <TiMediaFastForward
               className="block leading-none cursor-pointer hover:text-accent"
@@ -86,10 +107,16 @@ const MediaPlayer = ({ isSong, isImage, isTitle }) => {
               onClick={() => {
                 const song = songRef.current;
                 if (!song) return;
-                song.currentTime = Math.min(song.currentTime + 5, song.duration);
+                song.currentTime = Math.min(
+                  song.currentTime + 5,
+                  song.duration
+                );
               }}
             />
-            <LuShuffle size={20} className="cursor-pointer hover:text-accent" />
+            <LuShuffle
+              size={20}
+              className="cursor-pointer mt-1 hover:text-accent"
+            />
           </div>
           <div className="flex gap-5 justify-center items-center ">
             <HiSpeakerWave size={40} />

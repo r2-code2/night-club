@@ -54,7 +54,7 @@ export default function Events() {
         </div>
       </div>
 
-      {/* 2) RIGTIGT SLIDE-TRACK – absolute, med translateX (karusel!) */}
+    
       <div className="absolute inset-0">
         <div
           className="flex flex-nowrap h-full transition-transform duration-500 ease-out"

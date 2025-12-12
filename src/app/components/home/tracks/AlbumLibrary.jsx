@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Triangles from "../../hoverFrames/Triangles";
+import TracksOverlay from "./TracksOverlay";
 const AlbumLibrary = ({ setImage, setSong, setTitle }) => {
   return (
     <section className="flex">
@@ -18,6 +19,7 @@ const AlbumLibrary = ({ setImage, setSong, setTitle }) => {
             setTitle("Track 1");
           }}
         />
+        <TracksOverlay title="Track 1" />
       </Triangles>
       <Triangles>
         <Image
@@ -32,6 +34,7 @@ const AlbumLibrary = ({ setImage, setSong, setTitle }) => {
             setTitle("Track 2");
           }}
         />
+        <TracksOverlay title="Track 2" />
       </Triangles>
       <Triangles>
         <Image
@@ -46,6 +49,7 @@ const AlbumLibrary = ({ setImage, setSong, setTitle }) => {
             setTitle("Default track");
           }}
         />
+        <TracksOverlay title="Default track" />
       </Triangles>
       <Triangles>
         <Image
@@ -60,6 +64,7 @@ const AlbumLibrary = ({ setImage, setSong, setTitle }) => {
             setTitle("Track 4");
           }}
         />
+        <TracksOverlay title="Track 4" />
       </Triangles>
       <Triangles>
         <Image
@@ -74,6 +79,7 @@ const AlbumLibrary = ({ setImage, setSong, setTitle }) => {
             setTitle("Track 5");
           }}
         />
+        <TracksOverlay title="Track 5" />
       </Triangles>
     </section>
   );

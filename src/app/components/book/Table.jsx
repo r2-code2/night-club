@@ -15,7 +15,7 @@ const Table = ({ number, image, selectedTable, setSelectedTable, taken }) => {
   return (
     <div className="grid grid-cols-subgrid grid-rows-1 group transition-colors duration-200" onClick={() => !taken && setSelectedTable(number)}>
       <Image src={imgSrc} alt={number} className={`col-1 row-1 grid-cols-subgrid self-stretch object-cover w-full h-auto ${taken ? "opacity-50" : ""}`} />
-      <div className={`col-1 row-1 flex items-center justify-center group-hover:text-accent transition-opacity duration-200 ${selectedTable === number ? "text-accent" : ""}${taken ? "text-gray-400" : ""}`}>
+      <div className={`col-1 row-1 flex items-center justify-center  transition-opacity duration-200 ${selectedTable === number ? "text-accent" : ""}${taken ? "text-gray-400" : " cursor-pointer group-hover:text-accent"}`}>
         <Subheading text={number} />
       </div>
     </div>

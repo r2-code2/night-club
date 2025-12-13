@@ -1,26 +1,29 @@
 "use client";
 import { useEffect, useState } from "react";
 import Table from "./Table";
-
+import axios from "axios";
+import ErrorMessages from "../errormessages/ErrorMessages";
 const TableGrid = ({ selectedTable, setSelectedTable }) => {
-  const [takenTables, setTakenTables] = useState([]);
+  const [isTable, setTable] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   useEffect(() => {
-    const FetchTable = async () => {
-      const url = "http://localhost:4000/reservations";
-      const response = await fetch(url);
-      if (!response.ok) {
-        return <div>Error fetching posts: {response.status}</div>;
+    async function FetchTable() {
+      try {
+        const response = await axios.get("http://localhost:4000/reservations");
+        setTable(response.data || []);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setIsLoading(false);
       }
-
-      const data = await response.json();
-      // API may return either an array (e.g. [post, ...]) or an object { posts: [...] }
-      const reservations = Array.isArray(data) ? data : data?.reservations ?? [];
-
-      const occupied = reservations.map((reservation) => String(reservation.table));
-      setTakenTables(occupied);
-    };
+    }
     FetchTable();
   }, []);
+  if (isLoading) return <ErrorMessages message="Loading..." />;
+  if (error) return <ErrorMessages message="There´s been an error loading, try again later!" error="border bg-accent/50" />;
+  if (isTable.length === 0) return <ErrorMessages message="No posts found" error="border bg-accent/50" />;
+  const takenTables = isTable.map((reservation) => String(reservation.table));
   return (
     <div className="col-(--content-col)">
       <div className="grid grid-cols-3 gap-3 md:grid-cols-5 md:gap-10 mt-20">

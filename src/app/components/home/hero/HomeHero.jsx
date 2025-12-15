@@ -9,13 +9,13 @@ export default function PageIntro() {
   const randomImage = images[Math.floor(Math.random() * images.length)];
 
   return (
-    <div className="w-screen relative h-screen col-(--full-col) grid-cols-subgrid grid overflow-hidden">
+    <div className="w-screen relative h-screen col-(--full-col) grid-cols-subgrid grid ">
       <MusicLoader />
 
       <motion.img
         src={randomImage}
         alt="Background image"
-        className="bg-black absolute inset-0 col-(--full-col) object-cover row-span-full  scale-128 object-top bg-top h-screen "
+        className="bg-black absolute inset-0 col-(--full-col) object-cover row-span-full   scale-110 min-w-screen  h-screen"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 5, ease: "anticipate", type: "tween" }}

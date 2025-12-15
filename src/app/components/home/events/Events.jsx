@@ -67,7 +67,7 @@ export default function Events() {
                     {slides.map((slideEvents, slideIndex) => (
                       <div
                         key={slideIndex}
-                        className="min-w-full shrink-0">
+                        className="min-w-full ">
                         <div className="w-full md:flex gap-5">
                           {slideEvents.map((event, idx) => (
                             <div

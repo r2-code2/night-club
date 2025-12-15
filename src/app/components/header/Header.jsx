@@ -13,7 +13,7 @@ export default function Header() {
   const links = (
     <>
       <ul
-        className={`flex flex-col md:flex-row *:mx-4 font-medium uppercase *:tracking-[2%] *:text-nowrap  items-center text-center  md:text-start *:py-3`}>
+        className={`flex flex-col md:flex-row *:ml-8 font-medium uppercase *:tracking-[2%] *:text-nowrap  items-center text-center  md:text-start *:py-3`}>
         <li>
           <ActiveLink href="/">home</ActiveLink>
         </li>
@@ -26,9 +26,7 @@ export default function Header() {
         <li>
           <ActiveLink href="/contact">contact us</ActiveLink>
         </li>
-        <li>
-          <ActiveLink href="/login">login</ActiveLink>
-        </li>
+        
       </ul>
     </>
   );

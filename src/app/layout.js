@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`grid grid-cols-(--project-grid-cols)  ${ubuntu.variable}  antialiased `}>
+        className={`grid grid-cols-(--project-grid-cols)   ${ubuntu.variable}  antialiased `}>
         {children}
         <Footer />
       </body>

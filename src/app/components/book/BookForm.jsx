@@ -10,11 +10,7 @@ import { HeadingXL } from "../typography";
 
 // shadcn components
 import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from "@/components/ui/popover";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 
 const dateFormat = new Intl.DateTimeFormat("en-GB", {
@@ -27,11 +23,11 @@ const dateFormat = new Intl.DateTimeFormat("en-GB", {
 const formBookSchema = z.object({
   name: z
     .string()
-    .min(2, "Name must have minimum two letters")
-    .regex(/^[\p{L}\s'-]+$/u, "Please enter a valid name"),
+    .min(2, "Name must have minimum two letters.")
+    .regex(/^[\p{L}\s'-]+$/u, "Please enter a valid name."),
   email: z.string().email(),
-  table: z.coerce.number(),
-  guests: z.coerce.number().max(8, "No bookings online for over 8 guests"),
+  table: z.coerce.number("Select a table by clicking on a avaleble table."),
+  guests: z.coerce.number().max(8, "No bookings online for over 8 guests."),
   date: z.date().transform((d) => d.toISOString()),
   phone: z.coerce.number(),
   comment: z.string(),
@@ -43,7 +39,7 @@ const BookForm = ({ selectedTable, setSelectedTable }) => {
     defaultValues: { date: undefined },
   });
 
-  const { register, handleSubmit, formState, setValue, watch } = form;
+  const { register, handleSubmit, formState, setValue, watch, reset, setError } = form;
   const { errors, isSubmitting } = formState;
 
   const dateValue = watch("date");
@@ -72,6 +68,7 @@ const BookForm = ({ selectedTable, setSelectedTable }) => {
       }
 
       console.log("Success! Form has been submitted", data);
+      reset();
     } catch (err) {
       console.error("Error submitting form:", err);
     }
@@ -80,50 +77,31 @@ const BookForm = ({ selectedTable, setSelectedTable }) => {
   return (
     <div className="mt-20 col-(--content-col)">
       <HeadingXL text="book a table" />
-      <form
-        className={`grid md:grid-cols-2 col-(-content-col) py-4 ${
-          Object.values(errors).length ? "gap-6" : "gap-4"
-        }`}
-        onSubmit={handleSubmit(onSubmit)}>
+      <form className={`grid md:grid-cols-2 col-(-content-col) py-4 ${Object.values(errors).length ? "gap-6" : "gap-4"}`} onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full h-full">
-          <p className="text-red-500 text-xs h-6 align-baseline pt-2">
-            {errors.name?.message}
-          </p>
-          <input
-            type="text"
-            className={`w-full h-full border md:p-4 p-2 focus:outline-accent placeholder:text-foreground ${
-              errors.name ? "border-red-500" : ""
-            }`}
-            id="name"
-            placeholder="Your Name"
-            {...register("name")}
-          />
+          <p className="text-red-500 text-xs h-6 align-baseline pt-2">{errors.name?.message}</p>
+          <input type="text" className={`w-full h-full border md:p-4 p-2 focus:outline-accent placeholder:text-foreground ${errors.name ? "border-red-500" : ""}`} id="name" placeholder="Your Name" {...register("name")} />
         </div>
 
         <div className="w-full h-full">
-          <p className="text-red-500 text-xs h-6 align-baseline pt-2">
-            {errors.email?.message}
-          </p>
-          <input
-            type="text"
-            className={`w-full h-full border md:p-4 p-2 focus:outline-accent placeholder:text-foreground ${
-              errors.email ? "border-red-500" : ""
-            }`}
-            id="email"
-            placeholder="Your Email"
-            {...register("email")}
-          />
+          <p className="text-red-500 text-xs h-6 align-baseline pt-2">{errors.email?.message}</p>
+          <input type="text" className={`w-full h-full border md:p-4 p-2 focus:outline-accent placeholder:text-foreground ${errors.email ? "border-red-500" : ""}`} id="email" placeholder="Your Email" {...register("email")} />
         </div>
 
         <div className="w-full h-full">
-          <p className="text-red-500 text-xs h-6 align-baseline pt-2">
-            {errors.table?.message}
-          </p>
+          <p className="text-red-500 text-xs h-6 align-baseline pt-2">{errors.table?.message}</p>
           <input
             type="text"
-            className={`w-full h-full border md:p-4 p-2 focus:outline-accent placeholder:text-foreground ${
-              errors.table ? "border-red-500" : ""
-            }`}
+            readOnly
+            onClick={() => {
+              if (!watch("table")) {
+                setError("table", {
+                  type: "manual",
+                  message: "Please select a table by clicking on an available table.",
+                });
+              }
+            }}
+            className={`w-full cursor-default h-full border md:p-4 p-2 focus:outline-accent placeholder:text-foreground ${errors.table ? "border-red-500" : ""}`}
             id="table"
             placeholder="Table Number"
             {...register("table")}
@@ -131,86 +109,39 @@ const BookForm = ({ selectedTable, setSelectedTable }) => {
         </div>
 
         <div className="w-full h-full">
-          <p className="text-red-500 text-xs h-6 align-baseline pt-2">
-            {errors.guests?.message}
-          </p>
-          <input
-            type="text"
-            className={`w-full h-full border md:p-4 p-2 focus:outline-accent placeholder:text-foreground ${
-              errors.guests ? "border-red-500" : ""
-            }`}
-            id="guests"
-            placeholder="Number of Guests"
-            {...register("guests", { valueAsNumber: true })}
-          />
+          <p className="text-red-500 text-xs h-6 align-baseline pt-2">{errors.guests?.message}</p>
+          <input type="text" className={`w-full h-full border md:p-4 p-2 focus:outline-accent placeholder:text-foreground ${errors.guests ? "border-red-500" : ""}`} id="guests" placeholder="Number of Guests" {...register("guests", { valueAsNumber: true })} />
         </div>
 
         <div className="w-full h-full">
-          <p className="text-red-500 text-xs h-6 align-baseline pt-2">
-            {errors.date?.message}
-          </p>
+          <p className="text-red-500 text-xs h-6 align-baseline pt-2">{errors.date?.message}</p>
 
           <Popover>
             <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                type="button"
-                className={`w-full h-full border md:p-4 p-2 hover:text-accent   border-foreground justify-start text-left  ${
-                  !dateValue && "text-muted-foreground"
-                } ${errors.date ? "border-red-500" : ""}`}>
+              <Button variant="outline" type="button" className={`w-full h-full border md:p-4 p-2 hover:text-accent   border-foreground justify-start text-left  ${!dateValue && "text-muted-foreground"} ${errors.date ? "border-red-500" : ""}`}>
                 {dateValue ? dateFormat.format(dateValue) : "Select a date"}
               </Button>
             </PopoverTrigger>
 
             <PopoverContent className="p-0">
-              <Calendar
-                mode="single"
-                selected={dateValue}
-                onSelect={(day) =>
-                  setValue("date", day, { shouldValidate: true })
-                }
-                initialFocus
-              />
+              <Calendar mode="single" selected={dateValue} onSelect={(day) => setValue("date", day, { shouldValidate: true })} initialFocus />
             </PopoverContent>
           </Popover>
         </div>
 
         {/* --- PHONE --- */}
         <div className="w-full h-full">
-          <p className="text-red-500 text-xs h-6 align-baseline pt-2">
-            {errors.phone?.message}
-          </p>
-          <input
-            type="text"
-            className={`w-full h-full border md:p-4 p-2 focus:outline-accent placeholder:text-foreground ${
-              errors.phone ? "border-red-500" : ""
-            }`}
-            id="phone"
-            placeholder="Your Contact Number"
-            {...register("phone", { valueAsNumber: true })}
-          />
+          <p className="text-red-500 text-xs h-6 align-baseline pt-2">{errors.phone?.message}</p>
+          <input type="text" className={`w-full h-full border md:p-4 p-2 focus:outline-accent placeholder:text-foreground ${errors.phone ? "border-red-500" : ""}`} id="phone" placeholder="Your Contact Number" {...register("phone", { valueAsNumber: true })} />
         </div>
 
         {/* --- COMMENT --- */}
         <div className="col-span-full">
-          <p className="text-red-500 text-xs h-6 align-baseline pt-2">
-            {errors.comment?.message}
-          </p>
-          <textarea
-            className={`border md:p-4 h-80 p-2 w-full focus:outline-accent placeholder:text-foreground ${
-              errors.comment ? "border-red-500" : ""
-            }`}
-            id="comment"
-            placeholder="Your Comment"
-            {...register("comment")}
-          />
+          <p className="text-red-500 text-xs h-6 align-baseline pt-2">{errors.comment?.message}</p>
+          <textarea className={`border md:p-4 h-80 p-2 w-full focus:outline-accent placeholder:text-foreground ${errors.comment ? "border-red-500" : ""}`} id="comment" placeholder="Your Comment" {...register("comment")} />
         </div>
 
-        <MainButton
-          disabled={isSubmitting}
-          text={isSubmitting ? "reserving..." : "reserve"}
-          styling="col-span-full w-1/2 md:w-35 justify-self-end"
-        />
+        <MainButton disabled={isSubmitting} text={isSubmitting ? "reserving..." : "reserve"} styling="col-span-full w-1/2 md:w-35 justify-self-end" />
       </form>
     </div>
   );

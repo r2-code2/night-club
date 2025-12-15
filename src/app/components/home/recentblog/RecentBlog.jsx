@@ -2,9 +2,11 @@
 
 import { HeadingMain } from "../../typography";
 import RescentBlogPost from "./RecentBlogPost";
+import PatternBg from "../../bgOverlays/PatternBg";
 
 const RecentBlog = () => {
   return (
+        <PatternBg>
     <section className="grid grid-cols-subgrid col-(--content-col) overflow-hidden">
       <div className="h-50 flex items-center">
         <HeadingMain
@@ -16,6 +18,7 @@ const RecentBlog = () => {
         <RescentBlogPost />
       </div>
     </section>
+        </PatternBg>
   );
 };
 

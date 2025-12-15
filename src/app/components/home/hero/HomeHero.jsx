@@ -15,7 +15,7 @@ export default function PageIntro() {
       <motion.img
         src={randomImage}
         alt="Background image"
-        className="bg-black absolute inset-0 col-(--full-col) object-cover row-span-full  scale-128 object-top bg-top h-screen "
+        className="bg-black absolute inset-0 col-(--full-col) object-cover row-span-full min-w-full  scale-110 object-top bg-top h-screen "
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 5, ease: "anticipate", type: "tween" }}

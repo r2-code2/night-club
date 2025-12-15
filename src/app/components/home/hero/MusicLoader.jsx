@@ -18,7 +18,7 @@ const MotionLoader = () => {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}>
-          <motion.img src="/assets/icon/music_loader.gif"></motion.img>
+          <motion.img src="/assets/icon/music_loader.gif" ></motion.img>
         </motion.div>
       )}
     </AnimatePresence>

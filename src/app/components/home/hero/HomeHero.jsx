@@ -3,17 +3,23 @@
 import { motion } from "framer-motion";
 import { HeroSubheading } from "../../typography";
 import MusicLoader from "./MusicLoader";
+import { useState, useEffect } from "react";
 
 export default function PageIntro() {
-  const images = ["/assets/bg/header_bg_1.jpg", "/assets/bg/header_bg_2.jpg"];
-  const randomImage = images[Math.floor(Math.random() * images.length)];
+  const [isImg, setImg] = useState();
+
+  useEffect(() => {
+    const images = ["/assets/bg/header_bg_1.jpg", "/assets/bg/header_bg_2.jpg"];
+    const randomImage = images[Math.floor(Math.random() * images.length)];
+    setImg(randomImage);
+  }, []);
 
   return (
     <div className="w-screen relative h-screen col-(--full-col) grid-cols-subgrid grid ">
       <MusicLoader />
 
       <motion.img
-        src={randomImage}
+        src={isImg}
         alt="Background image"
         className="bg-black absolute inset-0 col-(--full-col) object-cover row-span-full   scale-110 min-w-screen  h-screen"
         initial={{ opacity: 0 }}

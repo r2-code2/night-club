@@ -30,20 +30,28 @@ export const HeadingSecondary = ({ text, color }) => (
     {text}
   </h2>
 );
+
+export const HeadingTertiary = ({ text, color }) => (
+  <h2
+    style={{ fontSize: "var(--step-1)" }}
+    className={`uppercase ${color}`}>
+    {text}
+  </h2>
+);
 export const Subheading = ({ text, color }) => (
-  <h3
+  <h4
     style={{ fontSize: "var(--step-2)" }}
     className={`${color}`}>
     {text}
-  </h3>
+  </h4>
 );
 
-export const BannerText = ({ text, style }) => (
-  <h3
+export const BannerText = ({ text, color }) => (
+  <h4
     style={{ fontSize: "var(--step-0)" }}
-    className={`${style}`}>
+    className={`${color}`}>
     {text}
-  </h3>
+  </h4>
 );
 
 export const HeroSubheading = ({ text, color }) => (

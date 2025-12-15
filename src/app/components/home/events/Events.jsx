@@ -32,57 +32,60 @@ export default function Events() {
       <GradientBg>
         <div className="col-(--content-col)">
           <div className="h-50 flex items-center">
-            <HeadingMain color="white" text="events of the month" />
+            <HeadingMain
+              color="white"
+              text="events of the month"
+            />
           </div>
 
-{/* KARUSEL – kun hvis vi har data */}
-{slides.length > 0 && (
-  <div className="w-full mt-6">
-    {/* Ydre container der styrer højde + overlap */}
-    <div className="relative w-full overflow-hidden">
-      {/* 1) FAKE SLIDE – usynlig, men giver højde (én række kort) */}
-      <div className="invisible">
-        <div className="w-full md:flex gap-5">
-          {slides[0].map((event, idx) => (
-            <div
-              key={`sizing-${event.id}`}
-              className={idx === 1 ? "hidden md:block w-full" : "w-full"}
-            >
-              <EventCard event={event} />
-            </div>
-          ))}
-        </div>
-      </div>
-
-    
-      <div className="absolute inset-0">
-        <div
-          className="flex flex-nowrap h-full transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        >
-          {slides.map((slideEvents, slideIndex) => (
-            <div
-              key={slideIndex}
-              className="min-w-full shrink-0"
-            >
-              <div className="w-full md:flex gap-5">
-                {slideEvents.map((event, idx) => (
-                  <div
-                    key={event.id}
-                    className={idx === 1 ? "hidden md:block w-full" : "w-full"}
-                  >
-                    <EventCard event={event} />
+          {/* KARUSEL – kun hvis vi har data */}
+          {slides.length > 0 && (
+            <div className="w-full mt-6">
+              {/* Ydre container der styrer højde + overlap */}
+              <div className="relative w-full overflow-hidden">
+                {/* 1) FAKE SLIDE – usynlig, men giver højde (én række kort) */}
+                <div className="invisible">
+                  <div className="w-full md:grid md:grid-cols-2 gap-5">
+                    {slides[0].map((event, idx) => (
+                      <div
+                        key={`sizing-${event.id}`}
+                        className={
+                          idx === 1 ? "hidden md:block w-full" : "w-full"
+                        }>
+                        <EventCard event={event} />
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
+
+                <div className="absolute inset-0">
+                  <div
+                    className="flex flex-nowrap h-full transition-transform duration-500 ease-out"
+                    style={{
+                      transform: `translateX(-${currentIndex * 100}%)`,
+                    }}>
+                    {slides.map((slideEvents, slideIndex) => (
+                      <div
+                        key={slideIndex}
+                        className="min-w-full shrink-0">
+                        <div className="w-full md:flex gap-5">
+                          {slideEvents.map((event, idx) => (
+                            <div
+                              key={event.id}
+                              className={
+                                idx === 1 ? "hidden md:block w-full" : "w-full"
+                              }>
+                              <EventCard event={event} />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </div>
-)}
-
+          )}
 
           {/* Dots slider – samme som i testimonials */}
           <Slider

@@ -2,7 +2,7 @@
 import postOne from "../../assets/content-img/recent_post1.jpg";
 import postTwo from "../../assets/content-img/recent_post2.jpg";
 import Image from "next/image";
-import { Caption } from "../typography";
+import { Caption, BannerText } from "../typography";
 
 const RecentPosts = ({ text, date, image }) => {
   const imgMap = {

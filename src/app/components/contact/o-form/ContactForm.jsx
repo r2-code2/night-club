@@ -18,12 +18,11 @@ const ContactForm = () => {
   const url = "http://localhost:4000/contact_messages";
 
   const [serverError, setServerError] = useState("");
-  const [success, setSuccess] = useState(false);
+
 
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors, isSubmitting },
   } = useForm({
@@ -35,11 +34,10 @@ const ContactForm = () => {
     },
   });
 
-  const contentValue = watch("content") || "";
 
   const onSubmit = async (data) => {
     setServerError("");
-    setSuccess(false);
+    
 
     const payload = {
       ...data,
@@ -61,7 +59,7 @@ const ContactForm = () => {
 
       // success
       reset({ name: "", email: "", content: "" });
-      setSuccess(true);
+      
       console.log("Message sent!", payload);
     } catch (err) {
       console.error(err);
@@ -123,9 +121,7 @@ const ContactForm = () => {
             {...register("content")}
           />
 
-          <p className="text-s text-foreground/60 mt-2">
-            {contentValue.length} / 200 characters
-          </p>
+        
         </div>
 
         {/* Server error */}
@@ -135,12 +131,7 @@ const ContactForm = () => {
           </p>
         )}
 
-        {/* Sent / success */}
-        {success && (
-          <p className="text-green-600 text-s col-span-full">
-            Message sent successfully!
-          </p>
-        )}
+    
 
         <MainButton
           text={isSubmitting ? "Sending..." : "send"}

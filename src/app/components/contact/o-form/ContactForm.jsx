@@ -2,21 +2,20 @@
 
 import { useState } from "react";
 import MainButton from "../../buttons/MainButton";
-import ErrorMessages from "../../errormessages/ErrorMessages";
 
 const ContactForm = () => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [message, setMessage] = useState("");
 
   const validateEmail = (email) => {
     if (!email) return "Email is required";
-
-    if (!email.includes("@") || !email.includes(".")) {
-      return "Please enter a valid email";
-    }
-
+    if (!email.includes("@") || !email.includes(".")) return "Please enter a valid email";
     return "";
   };
+
+  const countWords = (text) =>
+    text.trim().split(/\s+/).filter(Boolean).length;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,22 +51,29 @@ const ContactForm = () => {
           placeholder="Your Email"
         />
 
-        {/* {emailError && (
-          <ErrorMessages
-            message={emailError}
-            error="border-red-500"
-          />
-        )} */}
-
         {emailError && (
-         <p className="text-sm text-red-500 mt-1 col-span-full">
-         {emailError}
+          <p className="text-sm text-red-500 mt-1 col-span-full">
+            {emailError}
           </p>
         )}
+
         <textarea
-          className="w-full border col-span-full h-70 p-2 focus:outline-accent placeholder:text-foreground"
-          placeholder="Your Comment"
-        />
+  value={message}
+  onChange={(e) => {
+    const text = e.target.value;
+
+    if (text.length <= 200) {
+      setMessage(text);
+    }
+  }}
+  className="w-full border col-span-full h-70 p-2 focus:outline-accent placeholder:text-foreground"
+  placeholder="Your Comment"
+/>
+
+<p className="text-sm text-foreground/60 col-span-full">
+  {message.length} / 200 characters
+</p>
+
 
         <MainButton
           text="send"

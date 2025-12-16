@@ -15,8 +15,11 @@ export default function EventCard({ event }) {
     hour12: true,
   });
 
-  const date = dateFormat.format(new Date(event.date));
-  const time = timeFormat.format(new Date(event.date));
+  const eventDate = event?.date ? new Date(event.date) : null;
+  const isValidDate = eventDate && !isNaN(eventDate.getTime());
+
+  const date = isValidDate ? dateFormat.format(eventDate) : "TBD";
+  const time = isValidDate ? timeFormat.format(eventDate) : "--:--";
 
   return (
     <div className="relative  mb-10 w-full">

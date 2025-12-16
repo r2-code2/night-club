@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import Testimonials from "./Testimonials";
+import ErrorMessages from "../../errormessages/ErrorMessages";
 
 const FetchTestimonials = () => {
   return (
@@ -13,7 +14,9 @@ const Fetch = async () => {
   const response = await fetch(url);
   const data = await response.json();
   const testimonials = Array.isArray(data) ? data : data?.testimonials ?? [];
-
+  if (!response.ok) {
+    return <ErrorMessages message="We´re having some trouble loading this data, try again later!" />;
+  }
   return <Testimonials testimonials={testimonials} />;
 };
 

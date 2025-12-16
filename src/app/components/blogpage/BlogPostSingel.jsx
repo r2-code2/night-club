@@ -6,6 +6,7 @@ import BlogFull3 from "../../../../public/assets/content-img/blog_full3.jpg";
 import { Caption, HeadingSecondary, HeadingXL, Subheading } from "@/app/components/typography";
 import CommentForm from "@/app/components/blogpage/CommentForm";
 import ErrorMessages from "../errormessages/ErrorMessages";
+
 export default function BlogPostSingel({ id }) {
   return (
     <Suspense fallback={<div>Loading...</div>}>

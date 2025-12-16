@@ -25,6 +25,14 @@ export default async function BookTable() {
   } catch (error) {
     console.error("Blog fetch failed:", error);
 
-    return <ErrorMessages message="We’re having some trouble loading this data, try again later!" />;
+    return (
+      <>
+        <Header />
+        <main className="grid col-(--full-col) grid-cols-subgrid">
+          <HeroSection text="Book table" />
+          <ErrorMessages message="We’re having some trouble loading this data, try again later!" />
+        </main>
+      </>
+    );
   }
 }

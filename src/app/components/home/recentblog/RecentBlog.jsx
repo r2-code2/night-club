@@ -5,7 +5,7 @@ import PatternBg from "../../bgOverlays/PatternBg";
 const RecentBlog = () => {
   return (
     <PatternBg>
-      <section className="grid  col-(--content-col) overflow-hidden">
+      <section className="grid col-(--content-col) overflow-hidden">
         <div className="h-50 flex items-center">
           <HeadingMain color="white" text="Recent blog" />
         </div>

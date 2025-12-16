@@ -5,9 +5,10 @@ import Gallery from "./components/home/gallery/Gallery";
 import Welcome from "./components/home/welcome/Welcome";
 import LatestVideo from "./components/home/video/LatestVideo";
 import RecentBlog from "./components/home/recentblog/RecentBlog";
-import Testimonials from "./components/home/testimonials/Testimonials";
+
 import NewsLetter from "./components/home/newsletter/NewsLetter";
 import NightClubTrack from "./components/home/tracks/NightClubTrack";
+import FetchTestimonials from "./components/home/testimonials/FetchTestimonials";
 
 export default function Home() {
   return (
@@ -20,7 +21,7 @@ export default function Home() {
         <Gallery />
         <NightClubTrack />
         <LatestVideo />
-        <Testimonials />
+        <FetchTestimonials />
         <RecentBlog />
         <NewsLetter />
       </main>

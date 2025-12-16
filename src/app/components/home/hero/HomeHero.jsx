@@ -5,15 +5,11 @@ import { HeroSubheading } from "../../typography";
 import MusicLoader from "./MusicLoader";
 import { useState, useEffect } from "react";
 
-export default function PageIntro() {
-  const [isImg, setImg] = useState();
-
-  useEffect(() => {
+export default function HomeHero() {
+  const [isImg] = useState(() => {
     const images = ["/assets/bg/header_bg_1.jpg", "/assets/bg/header_bg_2.jpg"];
-    const randomImage = images[Math.floor(Math.random() * images.length)];
-    setImg(randomImage);
-  }, []);
-
+    return images[Math.floor(Math.random() * images.length)];
+  });
   return (
     <div className="w-screen relative h-screen col-(--full-col) grid-cols-subgrid grid ">
       <MusicLoader />

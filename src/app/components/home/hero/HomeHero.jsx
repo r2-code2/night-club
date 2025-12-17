@@ -3,11 +3,12 @@
 import { motion } from "framer-motion";
 import { HeroSubheading } from "../../typography";
 import MusicLoader from "./MusicLoader";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function HomeHero() {
   const [isImg] = useState(() => {
     const images = ["/assets/bg/header_bg_1.jpg", "/assets/bg/header_bg_2.jpg"];
+    // Denne math function kan resultere i hydration error
     return images[Math.floor(Math.random() * images.length)];
   });
   return (
@@ -39,6 +40,7 @@ export default function HomeHero() {
             }}
             style={{
               transformOrigin: "top",
+              // Fandt frem til 'transformStyle: preserve-3d' vha. AI
               transformStyle: "preserve-3d",
               display: "inline-block",
             }}

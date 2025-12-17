@@ -4,9 +4,7 @@
   --background: #070707;
   --foreground: #ffff;
   --accent: #ff2a70;
-  --triangle-size: clamp(2rem, 4vw, 3rem);
-  --triangle-size-lg: clamp(3rem, 5vw, 4rem);
-   --gutter: 1.7rem;
+  --gutter: 1.7rem;
   --project-grid-cols: [full-start] var(--gutter) [content-start]
     minmax(0, 90vw) [content-end] var(--gutter) [full-end];
 }
@@ -26,10 +24,10 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
-   
+
   --content-col: content;
   --full-col: full;
-  
+
   /* font sizes */
 }
 
@@ -45,34 +43,5 @@ body {
 
   > * {
     grid-column: content;
-  }
-}
-
-.frame {
-  --triangle-size: clamp(2rem, 4vw, 3rem);
-  width: 100%;
-  height: auto;
-  position: relative;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: var(--triangle-size);
-    height: var(--triangle-size);
-    background-color: var(--color-accent);
-    clip-path: polygon(0 0, 100% 0, 0 100%);
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: var(--triangle-size);
-    height: var(--triangle-size);
-    background-color: var(--color-accent);
-    clip-path: polygon(100% 0, 100% 100%, 0 100%);
   }
 }

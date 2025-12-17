@@ -1,5 +1,6 @@
 import { Ubuntu } from "next/font/google";
 import "./globals.css";
+import "./components/frames/triangles.css";
 
 import Footer from "./components/footer/Footer";
 

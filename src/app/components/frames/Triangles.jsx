@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import "./triangles.css";
 
 const Triangles = ({ children }) => {
   const triangleVariantsTopLeft = {

@@ -1,25 +1,5 @@
 # Regler for navngivning
 
-### Component Structure & Naming Conventions
-
-We use an atomic design–inspired structure with three component categories.
-
-#### Organisms (`o-`)
-
-Organisms are complex components composed of multiple smaller components.  
-All organism components must be placed in a folder starting with `o-`.
-
-#### Molecules (`m-`)
-
-Molecules are simpler components that may consist of multiple elements or smaller components.  
-All molecule components must be placed in a folder starting with `m-`.
-
-#### Atoms (`a-`)
-
-Atoms are basic components built from a single element, such as a button or typography.  
-All atom components must be placed in a folder starting with `a-`.
-
----
 
 ## Naming Conventions
 

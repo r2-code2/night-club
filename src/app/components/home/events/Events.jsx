@@ -1,5 +1,6 @@
 import axios from "axios";
 import EventsCarousel from "./EventsCarousel";
+import ErrorMessages from "../../errormessages/ErrorMessages";
 import { Suspense } from "react";
 
 export default async function Events() {

@@ -24,10 +24,11 @@ const FetchTable = async () => {
     if (!response.ok) {
       return <ErrorMessages message="We´re having some trouble loading this data, try again later!" />;
     }
+    const takenTables = data.map((r) => String(r.table));
 
     return (
       <>
-        <BookTableOverview data={data} />
+        <BookTableOverview takenTables={takenTables} />
       </>
     );
   } catch (error) {

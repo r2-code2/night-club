@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import MainButton from "../buttons/MainButton";
 import { HeadingXL } from "../typography";
+import { useRouter } from "next/navigation";
 
 // shadcn components
 import { Calendar } from "../shadcncomponents/ui/calendar";
@@ -31,20 +33,32 @@ const formBookSchema = z.object({
   comment: z.string(),
 });
 
-const BookForm = ({ selectedTable, setSelectedTable }) => {
+const BookForm = ({ selectedTable, setSelectedDate }) => {
   const form = useForm({
     resolver: zodResolver(formBookSchema),
     defaultValues: { date: undefined },
   });
-
+  const router = useRouter();
+  const [submitStatus, setSubmitStatus] = useState(null);
   const { register, handleSubmit, formState, setValue, watch, reset, setError } = form;
   const { errors, isSubmitting } = formState;
 
   const dateValue = watch("date");
 
+  const formatDateYMD = (d) => {
+    const y = d.getUTCFullYear();
+    const m = String(d.getUTCMonth() + 1).padStart(2, "0");
+    const day = String(d.getUTCDate()).padStart(2, "0");
+    return `${y}-${m}-${day}`;
+  };
+
   const url = "http://localhost:4000/reservations";
 
   const onSubmit = async (data) => {
+    if ((data.table === undefined || data.table === "" || data.table === 0) && selectedTable !== undefined) {
+      data.table = Number(selectedTable);
+    }
+
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     try {
@@ -55,20 +69,29 @@ const BookForm = ({ selectedTable, setSelectedTable }) => {
       });
 
       if (!response.ok) {
-        console.error("Failed:", await response.text());
+        const text = await response.text();
+        console.error("Failed:", text);
+        setSubmitStatus({ type: "error", message: "Failed to submit reservation. Please try again." });
+        setTimeout(() => setSubmitStatus(null), 5000);
         return;
       }
 
       console.log("Success! Form has been submitted", data);
+      setSubmitStatus({ type: "success", message: "Reservation submitted successfully!" });
       reset();
+      router.refresh();
+      setTimeout(() => setSubmitStatus(null), 5000);
     } catch (err) {
       console.error("Error submitting form:", err);
+      setSubmitStatus({ type: "error", message: "Error submitting reservation. Please try again." });
+      setTimeout(() => setSubmitStatus(null), 5000);
     }
   };
 
   return (
     <div className="mt-20 col-(--content-col)">
       <HeadingXL text="book a table" />
+
       <form className={`grid md:grid-cols-2 col-(-content-col) py-4 ${Object.values(errors).length ? "gap-6" : "gap-4"}`} onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full h-full">
           <p className="text-red-500 text-xs h-6 align-baseline pt-2">{errors.name?.message}</p>
@@ -117,7 +140,15 @@ const BookForm = ({ selectedTable, setSelectedTable }) => {
             </PopoverTrigger>
 
             <PopoverContent className="p-0">
-              <Calendar mode="single" selected={dateValue} onSelect={(day) => setValue("date", day, { shouldValidate: true })} initialFocus />
+              <Calendar
+                mode="single"
+                selected={dateValue}
+                onSelect={(day) => {
+                  setValue("date", day, { shouldValidate: true });
+                  setSelectedDate(formatDateYMD(day));
+                }}
+                initialFocus
+              />
             </PopoverContent>
           </Popover>
         </div>
@@ -133,6 +164,7 @@ const BookForm = ({ selectedTable, setSelectedTable }) => {
         </div>
 
         <MainButton disabled={isSubmitting} text={isSubmitting ? "reserving..." : "reserve"} styling="col-span-full w-1/2 md:w-35 justify-self-end" />
+        {submitStatus && <div className={` ${submitStatus.type === "success" ? " text-green-500" : " text-red-500"}`}>{submitStatus.message}</div>}
       </form>
     </div>
   );

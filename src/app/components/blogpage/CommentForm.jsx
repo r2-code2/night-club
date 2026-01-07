@@ -1,7 +1,7 @@
 "use client";
 
 import MainButton from "../buttons/MainButton";
-import { Caption, HeadingXL } from "../typography";
+import { HeadingXL } from "../typography";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -13,7 +13,7 @@ const formCommentSchema = z.object({
     .string()
     .min(2, "Name must have minimum two letters")
     .regex(/^[\p{L}\s'-]+$/u, "Please enter a valid name"),
-  content: z.string(),
+  comment: z.string().min(5, "You must leave a comment!"),
   blogpostId: z.number(),
   // date: z.date().transform((d) => d.toISOString()),
 });
@@ -27,7 +27,7 @@ const CommentForm = ({ id }) => {
       blogpostId: id,
       email: "",
       name: "",
-      content: "",
+      comment: "",
     },
   });
 
@@ -58,7 +58,7 @@ const CommentForm = ({ id }) => {
         blogpostId: id,
         email: "",
         name: "",
-        content: "",
+        comment: "",
       });
       router.refresh();
     } catch (err) {
@@ -69,63 +69,24 @@ const CommentForm = ({ id }) => {
   return (
     <div className="my-20">
       <HeadingXL text="leave a comment" />
-      <form
-        className="grid md:grid-cols-2 col-(-content-col)  py-4 gap-4"
-        onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="hidden"
-          value={"10-11-2025"}
-          {...register("blogpostId", { valueAsNumber: true })}
-        />
+      <form className="grid md:grid-cols-2 col-(-content-col)  py-4 gap-4" onSubmit={handleSubmit(onSubmit)}>
+        <input type="hidden" defaultValue={id ?? ""} {...register("blogpostId", { valueAsNumber: true })} />
 
         <div className="w-full h-full">
-          <p className="text-red-500 text-xs h-6 align-baseline pt-2">
-            {errors.name?.message}
-          </p>
+          <p className="text-red-500 text-xs h-6 align-baseline pt-2">{errors.name?.message}</p>
 
-          <input
-            type="text"
-            placeholder="Your Name"
-            id="name"
-            className={`border w-full h-full md:p-4 p-2 focus:outline-accent placeholder:text-foreground ${
-              errors.name ? "border-red-500" : ""
-            }`}
-            {...register("name")}
-          />
+          <input type="text" placeholder="Your Name" id="name" className={`border w-full h-full md:p-4 p-2 focus:outline-accent placeholder:text-foreground ${errors.name ? "border-red-500" : ""}`} {...register("name")} />
         </div>
         <div className="w-full h-full">
-          <p className="text-red-500 text-xs h-6 align-baseline pt-2">
-            {errors.email?.message}
-          </p>
+          <p className="text-red-500 text-xs h-6 align-baseline pt-2">{errors.email?.message}</p>
 
-          <input
-            type="text"
-            placeholder="Your Email"
-            id="email"
-            className={`focus:outline-accent border w-full h-full md:p-4 p-2 placeholder:text-foreground ${
-              errors.email ? "border-red-500" : ""
-            }`}
-            {...register("email")}
-          />
+          <input type="text" placeholder="Your Email" id="email" className={`focus:outline-accent border w-full h-full md:p-4 p-2 placeholder:text-foreground ${errors.email ? "border-red-500" : ""}`} {...register("email")} />
         </div>
         <div className="w-full h-full col-span-full">
-          <p className="text-red-500 text-xs h-6 align-baseline pt-2">
-            {errors.comment?.message}
-          </p>
-          <textarea
-            type="text"
-            placeholder="Your Comment"
-            id="comment"
-            className={`border md:p-4 w-full  h-80 p-2 focus:outline-accent placeholder:text-foreground ${
-              errors.comment ? "border-red-500" : ""
-            }`}
-            {...register("content")}
-          />
+          <p className="text-red-500 text-xs h-6 align-baseline pt-2">{errors.comment?.message}</p>
+          <textarea type="text" placeholder="Your Comment" id="comment" className={`border md:p-4 w-full  h-80 p-2 focus:outline-accent placeholder:text-foreground ${errors.comment ? "border-red-500" : ""}`} {...register("comment")} />
         </div>
-        <MainButton
-          text={` ${isSubmitting ? "Posting..." : "Submit"} `}
-          styling="col-span-full w-1/2 md:w-35 justify-self-end"
-        />
+        <MainButton type="submit" text={`${isSubmitting ? "Posting..." : "Submit"} `} styling="col-span-full w-1/2 md:w-35 justify-self-end" />
       </form>
     </div>
   );

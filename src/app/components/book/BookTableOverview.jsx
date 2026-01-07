@@ -10,8 +10,8 @@ const BookTableOverview = ({ data }) => {
   console.log(takenTables);
   return (
     <>
-      <TableGrid selectedTable={selectedTable} setSelectedTable={setSelectedTable} takenTables={takenTables} />
       <BookForm setSelectedDate={setSelectedDate} selectedTable={selectedTable} setSelectedTable={setSelectedTable} takenTables={takenTables} />
+      <TableGrid selectedTable={selectedTable} setSelectedTable={setSelectedTable} takenTables={takenTables} />
     </>
   );
 };

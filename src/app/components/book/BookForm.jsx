@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -38,6 +39,7 @@ const BookForm = ({ selectedTable, setSelectedDate }) => {
     defaultValues: { date: undefined },
   });
   const router = useRouter();
+  const [submitStatus, setSubmitStatus] = useState(null);
   const { register, handleSubmit, formState, setValue, watch, reset, setError } = form;
   const { errors, isSubmitting } = formState;
 
@@ -67,21 +69,29 @@ const BookForm = ({ selectedTable, setSelectedDate }) => {
       });
 
       if (!response.ok) {
-        console.error("Failed:", await response.text());
+        const text = await response.text();
+        console.error("Failed:", text);
+        setSubmitStatus({ type: "error", message: "Failed to submit reservation. Please try again." });
+        setTimeout(() => setSubmitStatus(null), 5000);
         return;
       }
 
       console.log("Success! Form has been submitted", data);
+      setSubmitStatus({ type: "success", message: "Reservation submitted successfully!" });
       reset();
       router.refresh();
+      setTimeout(() => setSubmitStatus(null), 5000);
     } catch (err) {
       console.error("Error submitting form:", err);
+      setSubmitStatus({ type: "error", message: "Error submitting reservation. Please try again." });
+      setTimeout(() => setSubmitStatus(null), 5000);
     }
   };
 
   return (
     <div className="mt-20 col-(--content-col)">
       <HeadingXL text="book a table" />
+
       <form className={`grid md:grid-cols-2 col-(-content-col) py-4 ${Object.values(errors).length ? "gap-6" : "gap-4"}`} onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full h-full">
           <p className="text-red-500 text-xs h-6 align-baseline pt-2">{errors.name?.message}</p>
@@ -154,6 +164,7 @@ const BookForm = ({ selectedTable, setSelectedDate }) => {
         </div>
 
         <MainButton disabled={isSubmitting} text={isSubmitting ? "reserving..." : "reserve"} styling="col-span-full w-1/2 md:w-35 justify-self-end" />
+        {submitStatus && <div className={` ${submitStatus.type === "success" ? " text-green-500" : " text-red-500"}`}>{submitStatus.message}</div>}
       </form>
     </div>
   );

@@ -58,7 +58,7 @@ const FetchProduct = async ({ id }) => {
         </div>
         <div className="col-(--content-col)">
           <Comments comments={post.comments} />
-          <CommentForm />
+          <CommentForm id={id} />
         </div>
       </>
     );

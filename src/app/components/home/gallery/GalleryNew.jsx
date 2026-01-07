@@ -54,7 +54,7 @@ const GalleryNew = () => {
         className="w-full h-full grid md:grid-cols-6 grid-cols-2 md:grid-rows-2 "
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, amount: 0.5 }}>
+        viewport={{ once: false, amount: 0.2 }}>
         <motion.div
           className="contents"
           variants={containerVariant}>

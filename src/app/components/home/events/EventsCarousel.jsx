@@ -53,7 +53,7 @@ export default function EventsCarousel({ initialEvents }) {
           </div>
 
           {slides.length > 0 && (
-            <div className="w-full max-h-130 mt-6">
+            <div className="w-full max-h-125 mt-6">
               <div
                 ref={scrollRef}
                 onScroll={handleScroll}

@@ -3,14 +3,18 @@
 import { motion } from "framer-motion";
 import { HeroSubheading } from "../../typography";
 import MusicLoader from "./MusicLoader";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function HomeHero() {
-  const [isImg] = useState(() => {
-    const images = ["/assets/bg/header_bg_1.jpg", "/assets/bg/header_bg_2.jpg"];
-    // Denne math function kan resultere i hydration error
-    return images[Math.floor(Math.random() * images.length)];
-  });
+  const images = ["/assets/bg/header_bg_1.jpg", "/assets/bg/header_bg_2.jpg"];
+
+  const [isImg, setIsImg] = useState(images[0]);
+
+  // Hydration error fix vha. useEffect
+  useEffect(() => {
+    setIsImg(images[Math.floor(Math.random() * images.length)]);
+  }, []);
+
   return (
     <div className="w-screen relative h-screen col-(--full-col) grid-cols-subgrid grid overflow-hidden">
       <MusicLoader />

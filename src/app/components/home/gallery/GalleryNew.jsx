@@ -43,7 +43,9 @@ const GalleryNew = () => {
   const secondRow = images.filter((img) => img.id >= 5);
 
   return (
-    <div className="col-(--full-col) h-[1000px] md:h-[500px] mb-50">
+    <div
+      className="col-(--full-col) h-[1000px] md:h-[500px] mb-50"
+      id="gallery">
       <div className=" h-50 flex items-center">
         <HeadingMain
           color="white"

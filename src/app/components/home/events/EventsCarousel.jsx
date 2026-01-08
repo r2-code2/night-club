@@ -42,7 +42,9 @@ export default function EventsCarousel({ initialEvents }) {
   }, []);
 
   return (
-    <section className="col-(--full-col) grid grid-cols-subgrid">
+    <section
+      className="col-(--full-col) grid grid-cols-subgrid"
+      id="events">
       <GradientBg>
         <div className="col-(--content-col) flex flex-col">
           <div className="h-50 flex items-center">

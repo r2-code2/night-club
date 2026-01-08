@@ -16,7 +16,9 @@ export default function HomeHero() {
   }, []);
 
   return (
-    <div className="w-screen relative h-screen col-(--full-col) grid-cols-subgrid grid overflow-hidden">
+    <div
+      className="w-screen relative h-screen col-(--full-col) grid-cols-subgrid grid overflow-hidden"
+      id="hero">
       <MusicLoader />
 
       <motion.img

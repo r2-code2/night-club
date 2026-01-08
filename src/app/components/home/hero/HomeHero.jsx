@@ -10,14 +10,22 @@ export default function HomeHero() {
 
   const [isImg, setIsImg] = useState(images[0]);
 
-  // Hydration error fix vha. useEffect
+  const [hideCursor, setHideCursor] = useState(true);
+
   useEffect(() => {
+    // Hydration error fix vha. useEffect
     setIsImg(images[Math.floor(Math.random() * images.length)]);
+
+    // Extra lækker animation med skjult cursor
+    const timer = setTimeout(() => setHideCursor(false), 3000);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <div
-      className="w-screen relative h-screen col-(--full-col) grid-cols-subgrid grid overflow-hidden"
+      className={`w-screen relative h-screen col-(--full-col) grid-cols-subgrid grid overflow-hidden ${
+        hideCursor ? "cursor-none" : "cursor-auto"
+      }`}
       id="hero">
       <MusicLoader />
 

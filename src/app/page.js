@@ -1,5 +1,5 @@
-import HomeHero from "./components/home/hero/HomeHero";
 import Header from "./components/header/Header";
+import NewHomeHero from "./components/home/hero/NewHomeHero";
 import Events from "./components/home/events/Events";
 import Gallery from "./components/home/gallery/Gallery";
 import Welcome from "./components/home/welcome/Welcome";
@@ -12,7 +12,7 @@ import FetchTestimonials from "./components/home/testimonials/FetchTestimonials"
 export default function Home() {
   return (
     <main className="grid col-(--full-col) grid-cols-subgrid">
-      <HomeHero />
+      <NewHomeHero />
       <Header />
       <Welcome />
       <Events />

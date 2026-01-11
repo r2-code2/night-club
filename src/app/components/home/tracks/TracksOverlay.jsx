@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { Subheading } from "../../typography";
 import { FaPlay } from "react-icons/fa";
+import Cursor from "../../ui/Cursor";
 const TracksOverlay = ({ title, image, song, setImage, setSong, setTitle }) => {
   const overlayVariants = {
     hidden: { opacity: 0 },
@@ -9,6 +10,7 @@ const TracksOverlay = ({ title, image, song, setImage, setSong, setTitle }) => {
   };
   return (
     <>
+      <Cursor />
       <motion.div
         variants={overlayVariants}
         initial="hidden"
@@ -18,13 +20,15 @@ const TracksOverlay = ({ title, image, song, setImage, setSong, setTitle }) => {
           setImage(image);
           setSong(song);
           setTitle(title);
-        }}
-      >
+        }}>
         <div className="border-4 mt-18 *:pl-1 rounded-full p-1 w-10 h-10 grid justify-center items-center cursor-pointer hover:border-accent text-accent">
           <FaPlay size={20} />
         </div>
         <div className="bg-black w-full py-2 text-center px-6 gap-2 hidden lg:block">
-          <Subheading color="pb-2 uppercase" text={title} />
+          <Subheading
+            color="pb-2 uppercase"
+            text={title}
+          />
         </div>
       </motion.div>
     </>

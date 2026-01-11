@@ -5,13 +5,12 @@ import { HeroSubheading } from "../../typography";
 import MusicLoader from "./MusicLoader";
 import { useState, useEffect } from "react";
 
-export default function HomeHero() {
-  const images = ["/assets/bg/header_bg_1.jpg", "/assets/bg/header_bg_2.jpg"];
-  const [isImg, setIsImg] = useState(images[0]);
+export default function HomeHero({image}) {
+
   const [hideCursor, setHideCursor] = useState(true);
 
   useEffect(() => {
-    setIsImg(images[Math.floor(Math.random() * images.length)]);
+
     // Extra lækker animation med skjult cursor
     const timer = setTimeout(() => setHideCursor(false), 3000);
     return () => clearTimeout(timer);
@@ -26,7 +25,7 @@ export default function HomeHero() {
       <MusicLoader />
 
       <motion.img
-        src={isImg}
+        src={image}
         alt="Background image"
         className="bg-black absolute inset-0 col-(--full-col) object-cover row-span-full  min-w-screen  h-screen scale-110"
         initial={{ opacity: 0 }}

@@ -1,7 +1,7 @@
 "use client";
 
 import MainButton from "../buttons/MainButton";
-import { Caption, HeadingXL } from "../typography";
+import { HeadingXL } from "../typography";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -15,7 +15,6 @@ const formCommentSchema = z.object({
     .regex(/^[\p{L}\s'-]+$/u, "Please enter a valid name"),
   content: z.string(),
   blogpostId: z.number(),
-  // date: z.date().transform((d) => d.toISOString()),
 });
 
 const CommentForm = ({ id }) => {
@@ -37,7 +36,7 @@ const CommentForm = ({ id }) => {
   const onSubmit = async (data) => {
     const submissionData = {
       ...data,
-      date: new Date().toISOString(), // Backend will set this, but send it just in case
+      date: new Date().toISOString(),
     };
     await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log("Comment has been posted", submissionData);
@@ -74,7 +73,7 @@ const CommentForm = ({ id }) => {
         onSubmit={handleSubmit(onSubmit)}>
         <input
           type="hidden"
-          value={"10-11-2025"}
+          value={id}
           {...register("blogpostId", { valueAsNumber: true })}
         />
 
@@ -110,14 +109,14 @@ const CommentForm = ({ id }) => {
         </div>
         <div className="w-full h-full col-span-full">
           <p className="text-red-500 text-xs h-6 align-baseline pt-2">
-            {errors.comment?.message}
+            {errors.content?.message}
           </p>
           <textarea
             type="text"
             placeholder="Your Comment"
             id="comment"
             className={`border md:p-4 w-full  h-80 p-2 focus:outline-accent placeholder:text-foreground ${
-              errors.comment ? "border-red-500" : ""
+              errors.content ? "border-red-500" : ""
             }`}
             {...register("content")}
           />

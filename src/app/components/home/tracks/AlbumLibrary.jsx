@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Triangles from "../../frames/Triangles";
 import TracksOverlay from "./TracksOverlay";
+
 const AlbumLibrary = ({ isImage, setImage, setSong, setTitle }) => {
   return (
     <>

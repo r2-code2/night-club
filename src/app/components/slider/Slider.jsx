@@ -4,7 +4,9 @@ export const SliderDot = ({ isActive, onClick }) => (
   <button
     type="button"
     onClick={onClick}
-    className={`cursor-pointer w-4 h-4 ${isActive ? "bg-accent" : "bg-white"}`}
+    className={`cursor-pointer w-4 h-4 ${
+      isActive ? "bg-accent" : "bg-white"
+    }`}
   />
 );
 

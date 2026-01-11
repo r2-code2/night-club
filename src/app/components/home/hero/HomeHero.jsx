@@ -3,32 +3,22 @@
 import { motion } from "framer-motion";
 import { HeroSubheading } from "../../typography";
 import MusicLoader from "./MusicLoader";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function HomeHero() {
-  const images = ["/assets/bg/header_bg_1.jpg", "/assets/bg/header_bg_2.jpg"];
-  const [isImg, setIsImg] = useState(images[0]);
-  const [hideCursor, setHideCursor] = useState(true);
-
-  useEffect(() => {
-    setIsImg(images[Math.floor(Math.random() * images.length)]);
-    // Extra lækker animation med skjult cursor
-    const timer = setTimeout(() => setHideCursor(false), 3000);
-    return () => clearTimeout(timer);
-  }, []);
-
+  const [isImg] = useState(() => {
+    const images = ["/assets/bg/header_bg_1.jpg", "/assets/bg/header_bg_2.jpg"];
+    // Denne math function kan resultere i hydration error
+    return images[Math.floor(Math.random() * images.length)];
+  });
   return (
-    <div
-      className={`w-screen relative h-screen col-(--full-col) grid-cols-subgrid grid overflow-hidden ${
-        hideCursor ? "cursor-none" : "cursor-auto"
-      }`}
-      id="hero">
+    <div className="w-screen relative h-screen col-(--full-col) grid-cols-subgrid grid ">
       <MusicLoader />
 
       <motion.img
         src={isImg}
         alt="Background image"
-        className="bg-black absolute inset-0 col-(--full-col) object-cover row-span-full  min-w-screen  h-screen scale-110"
+        className="bg-black absolute inset-0 col-(--full-col) object-cover row-span-full   scale-110 min-w-screen  h-screen"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 5, ease: "anticipate", type: "tween" }}

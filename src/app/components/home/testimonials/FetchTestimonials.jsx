@@ -16,15 +16,11 @@ const Fetch = async () => {
     const data = await response.json();
     const testimonials = Array.isArray(data) ? data : data?.testimonials ?? [];
     if (!response.ok) {
-      return (
-        <ErrorMessages message="We´re having some trouble loading this data, try again later!" />
-      );
+      return <ErrorMessages message="We´re having some trouble loading this data, try again later!" />;
     }
     return <Testimonials testimonials={testimonials} />;
-  } catch {
-    return (
-      <ErrorMessages message="We’re having some trouble loading this data, try again later!" />
-    );
+  } catch (error) {
+    return <ErrorMessages message="We’re having some trouble loading this data, try again later!" />;
   }
 };
 

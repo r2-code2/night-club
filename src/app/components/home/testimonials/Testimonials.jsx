@@ -12,21 +12,11 @@ export default function Testimonials({ testimonials = [] }) {
 
   if (testimonials.length > 0) {
     content = (
-      <div
-        className="w-full overflow-hidden mt-12"
-        id="testimonials">
-        <div
-          className="flex transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+      <div className="w-full overflow-hidden mt-12">
+        <div className="flex transition-transform duration-500 ease-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
           {testimonials.map((t) => (
-            <div
-              key={t.id}
-              className="min-w-full flex justify-center">
-              <TestimonialCard
-                image={t.asset?.url}
-                name={t.name}
-                text={t.content}
-              />
+            <div key={t.id} className="min-w-full flex justify-center">
+              <TestimonialCard image={t.asset?.url} name={t.name} text={t.content} />
             </div>
           ))}
         </div>
@@ -39,10 +29,7 @@ export default function Testimonials({ testimonials = [] }) {
       <PartyBg>
         {content}
 
-        <Slider
-          currentIndex={currentIndex}
-          onChange={setCurrentIndex}
-        />
+        <Slider currentIndex={currentIndex} onChange={setCurrentIndex} />
       </PartyBg>
     </div>
   );

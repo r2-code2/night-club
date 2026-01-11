@@ -1,6 +1,5 @@
 import { Suspense } from "react";
-// import GalleryImages from "./GalleryImages";
-import GalleryNew from "./GalleryNew";
+import GalleryImages from "./GalleryImages";
 import ErrorMessages from "../../errormessages/ErrorMessages";
 
 export default function Gallery() {
@@ -23,10 +22,8 @@ const FetchGallery = async () => {
     // Ensure isImage is always an array
     const isImage = Array.isArray(data) ? data : data?.isImage ?? [];
 
-    return <GalleryNew isImage={isImage} />;
-  } catch {
-    return (
-      <ErrorMessages message="We’re having some trouble loading this data, try again later!" />
-    );
+    return <GalleryImages isImage={isImage} />;
+  } catch (error) {
+    return <ErrorMessages message="We’re having some trouble loading this data, try again later!" />;
   }
 };

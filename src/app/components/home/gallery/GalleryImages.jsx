@@ -86,7 +86,7 @@ const GalleryImages = ({ isImage }) => {
             opts={{ startIndex: isActive, loop: true }}>
             <CarouselContent>
               {isImage.length > 0 &&
-                isImage.slice(0, 7).map((img) => {
+                isImage.slice(0, 7).map((img, index) => {
                   const filename = img.asset.url.split("/").pop();
                   return (
                     <CarouselItem
